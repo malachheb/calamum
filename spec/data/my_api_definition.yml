@@ -1,0 +1,10 @@
+user:
+  uri: 'test'
+  action: 'get'
+  params:
+    id: 'test'
+group:
+  uri: 'group'
+  action: 'get'
+  params:
+    id: 'test'
