@@ -7,7 +7,8 @@ describe ApiDoc::ApiDefinitionParser do
   end
 
   specify{@definition.get_resources.should == ['user', 'group']}
-  specify {@definition.get_resource_action('user').should == 'get'}
-  specify{@definition.get_resource_uri('user').should == 'test'}
+  specify {@definition.get_resource_uris('user').size.should == 2}
+  specify{@definition.find_resource_uri_by_label('user', 'get_user').should == 'test'}
+  specify{@definition.find_resource_action_by_label('user', 'get_user').should == 'get'}
 
 end
