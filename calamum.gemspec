@@ -3,12 +3,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'api_doc/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "rails_api_doc"
-  gem.version       = ApiDoc::VERSION
+  gem.name          = "calamum"
+  gem.version       = Calamum::VERSION
   gem.authors       = ["Mehrez Alachheb"]
   gem.email         = ["lachheb.mehrez@gmail.com"]
-  gem.description   = %q{provides a framework to generate an api documentaion for Rails RESTfully Application}
-  gem.summary       = %q{provides a framework to generate an api documentaion for Rails RESTfully Application}
+  gem.description   = %q{provides a framework to generate a rest api documentaion}
+  gem.summary       = %q{provides a framework to generate a rest api documentaion}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
