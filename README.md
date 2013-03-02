@@ -1,4 +1,4 @@
 rails_api_doc
 =============
 
-Rails Rest Api documentation generator
+Calamim is REST API documentation generator

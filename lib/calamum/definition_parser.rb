@@ -1,8 +1,8 @@
 
-class ApiDoc::ApiDefinitionParser
+class Calamum::DefinitionParser
 
-  def initialize(api_definition_yaml)
-    @api_definition = api_definition_yaml
+  def initialize(definition_yaml)
+    @api_definition = definition_yaml
   end
 
   def get_resources
