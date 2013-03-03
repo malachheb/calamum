@@ -1,5 +1,4 @@
 #require 'api_doc/application'
-#require 'home5k/config'
 #require 'home5k/user'
 #require 'home5k/misc'
 #require 'restclient'
@@ -8,6 +7,8 @@
 #require 'progressbar'
 #require 'facter'
 require 'calamum'
+require 'calamum/config'
+require 'calamum/doc_generator'
 require 'mixlib/cli'
 
 class Calamum::Runner
@@ -16,7 +17,6 @@ class Calamum::Runner
 
   def initialize  
     super
-    
     # trap("TERM") do
     #   Home5k::Application.fatal!("SIGTERM received, stopping", 1)
     # end
@@ -26,10 +26,7 @@ class Calamum::Runner
     # end
   end
   
-  def run
-    parse_options
-  end
-  
+ 
   option :help,
     :short        => "-h",
     :long         => "--help",
@@ -55,14 +52,25 @@ class Calamum::Runner
     :proc         => lambda { |p| true }
     
   option :definition,
-    :short        => "-d",
-    :long         => "--definition",
+    :short        => "-d DEFINITION",
+    :long         => "--definition DEFINITION",
     :description  => "Definition YAML file",
-    :boolean      => true,
-    :default      => false
+    :required => true
     
   option :template,
-    :short        => "-t",
-    :long         => "--template",
+    :short        => "-t TEMPLATE",
+    :long         => "--template TEMPLATE",
     :description  => "Documentation HTML template"
+
+  def run
+    parse_options
+    Calamum::Config.merge!(config)
+    api_definition = YAML.load(File.open(config[:definition]))
+    @definition = Calamum::DefinitionParser.new(api_definition)
+    template = Calamum::DocGenerator.load_template
+    html_output = Calamum::DocGenerator.new(template, @definition.get_resources)
+    html_output.save_result(File.join(ENV['HOME'], 'list.html'))
+  end
+  
+
 end

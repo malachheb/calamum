@@ -1,16 +1,14 @@
-<DOCTYPE html  "-//W3C//DTD  1.0 //EN"
-	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<DOCTYPE html  "-//W3C//DTD  1.0 //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Shopping List for <%= @date.strftime('%A, %d %B %Y') %></title>
+    <title>resources</title>
   </head>
   <body>
-    <h1>Shopping List for <%= @date.strftime('%A, %d %B %Y') %></h1>
-    <p>You need to buy:</p>
+    <h1>Api resources</h1>
     <ul>
-      <% for @item in @items %>
-      <li><%= h(@item) %></li>
+      <% for @resource in @resources %>
+      <li><%= @resource %></li>
       <% end %>
     </ul>
   </body>
