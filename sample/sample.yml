@@ -1,0 +1,19 @@
+user:
+  -
+   label: 'get_users'
+   uri: '/users'
+   action: 'get'
+   params:
+     id: 'test'
+  -
+   label: 'get_user'
+   uri: '/users/:id'
+   action: 'get'
+   params:
+     id: 'id'
+group:
+  -
+   label: 'get_groups'
+   uri: '/groups'
+   action: 'get'
+   params:

@@ -1,4 +1,4 @@
-rails_api_doc
+Calamum
 =============
 
 Calamim is REST API documentation generator
