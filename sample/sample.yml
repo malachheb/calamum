@@ -1,19 +1,18 @@
 user:
   -
-   label: 'get_users'
    uri: '/users'
    action: 'get'
-   params:
-     id: 'test'
+   content_type: 'application/json'
+   description: 'Get the list of the users'
   -
-   label: 'get_user'
    uri: '/users/:id'
    action: 'get'
    params:
-     id: 'id'
+     id: 
+         type: 'String'
 group:
   -
-   label: 'get_groups'
    uri: '/groups'
    action: 'get'
-   params:
+   content_type: 'application/json'
+   description: 'Get the list og groups'

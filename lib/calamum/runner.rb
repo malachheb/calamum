@@ -15,18 +15,18 @@ class Calamum::Runner
   include Mixlib::CLI
   CMD_NAME = "calamum"
 
-  def initialize  
+  def initialize
     super
     # trap("TERM") do
     #   Home5k::Application.fatal!("SIGTERM received, stopping", 1)
     # end
-    
+
     # trap("INT") do
     #   Home5k::Application.fatal!("SIGINT received, stopping", 2)
     # end
   end
-  
- 
+
+
   option :help,
     :short        => "-h",
     :long         => "--help",
@@ -35,7 +35,7 @@ class Calamum::Runner
     :boolean      => true,
     :show_options => true,
     :exit         => 0
-  
+
   option :version,
     :short        => "-v",
     :long         => "--version",
@@ -43,20 +43,20 @@ class Calamum::Runner
     :boolean      => true,
     :proc         => lambda {|v| puts "Calamum: #{Calamum::VERSION}"},
     :exit         => 0
-  
+
   option :dryrun,
     :long         => "--dryrun",
     :description  => "Show actions to do (default)",
     :boolean      => true,
     :default      => true,
     :proc         => lambda { |p| true }
-    
+
   option :definition,
     :short        => "-d DEFINITION",
     :long         => "--definition DEFINITION",
     :description  => "Definition YAML file",
     :required => true
-    
+
   option :template,
     :short        => "-t TEMPLATE",
     :long         => "--template TEMPLATE",
@@ -67,10 +67,11 @@ class Calamum::Runner
     Calamum::Config.merge!(config)
     api_definition = YAML.load(File.open(config[:definition]))
     @definition = Calamum::DefinitionParser.new(api_definition)
+    @definition.load_requests
     template = Calamum::DocGenerator.load_template
-    html_output = Calamum::DocGenerator.new(template, @definition.get_resources)
+    html_output = Calamum::DocGenerator.new(template, @definition.resources)
     html_output.save_result(File.join(ENV['HOME'], 'list.html'))
   end
-  
+
 
 end
