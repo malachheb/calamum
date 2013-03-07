@@ -1,98 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link href="./assets/stylesheets/bootstrap.css" rel="Stylesheet"/>
-	<link href="./assets/stylesheets/bootstrap-responsive.css" rel="Stylesheet"/>
-	<link href="./assets/stylesheets/docs.css" rel="Stylesheet"/>
-	<script type="text/javascript" src="./assets/javascripts/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="./assets/javascripts/bootstrap.js"></script>
-	<title>Rails Api Doc</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link href="./assets/stylesheets/bootstrap.css" rel="Stylesheet"/>
+<link href="./assets/stylesheets/bootstrap-responsive.css" rel="Stylesheet"/>
+<link href="./assets/stylesheets/docs.css" rel="Stylesheet"/>
+<script type="text/javascript" src="./assets/javascripts/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="./assets/javascripts/bootstrap.js"></script>
+<title>Rails Api Doc</title>
 </head>
 
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
-	<header class="jumbotron subhead" id="overview">
-		<div class="container">
-			<h1>Drive Rest API</h1>
-			<p class="lead">http://localhost:300/api/</p>
-		</div>
-	</header>
-	<div class="container">
-		<div class="row">
-			<div class="span3 bs-docs-sidebar">
-				<ul class="nav nav-list bs-docs-sidenav affix-top">
-					<li class="active">
-						<a href="#user">
-							<i class="icon-chevron-right"></i> User</a>
-						</li>
-						<li>
-							<a href="#group">
-								<i class="icon-chevron-right"></i> Group</a>
-							</li>
-						</ul>
-					</div>
-					<div class="span9">
-						<section id="global">
-							<div class="page-header">
-								<h2>User resource</h2>
-							</div>
-							<div class="accordion" id="accordion2">
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-											<span class="label label-info">GET</span>/users
-										</a>
-									</div>
-								</div>
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-											<span class="label label-success">POST</span>/users
-										</a>
-									</div>
-								</div>
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#putcollapse">
-											<span class="label label-warning">PUT</span>/users/:id
-										</a>
-									</div>
-									<div id="putcollapse" class="accordion-body collapse">
-										<div class="accordion-inner">
-											<ul class="nav nav-tabs">
-											  <li class="active"><a href="#description"  data-toggle="tab">Description</a></li>
-											  <li><a href="#header" data-toggle="tab">Profile</a></li>
-											  <li><a href="#parameters" data-toggle="tab">Parameters</a></li>
-											  <li><a href="#response" data-toggle="tab">Response</a></li>
-											</ul>
-											<div class="tab-content">
-											  <div class="tab-pane active" id="description">Updtae user object</div>
-											  <div class="tab-pane" id="header">...</div>
-											  <div class="tab-pane" id="parameters">...</div>
-											  <div class="tab-pane" id="response">...</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-											<span class="label label-important">DELETE</span>/users/:id
-										</a>
-									</div>
-									<div id="collapseTwo" class="accordion-body collapse">
-										<div class="accordion-inner">
-											Anim pariatur cliche...
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-					</div>
-
-				</div>
-			</div>
-		</body>
+<header class="jumbotron subhead" id="overview">
+<div class="container">
+  <h1><%= @name %> Rest API Doc</h1>
+  <p class="lead"><%= @url %></p>
+</div>
+</header>
+<div class="container">
+<div class="row">
+<div class="span3 bs-docs-sidebar">
+  <ul class="nav nav-list bs-docs-sidenav affix-top">
+    <% @resources.keys.each_with_index do |key,index| %>
+    <li class="<%= index == 0 ? 'active': '' %>">
+    <a href="#<%= key %>_section">
+    <i class="icon-chevron-right"></i><%= key %></a>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<div class="span9">
+  <% @resources.each do |name, requests| %>
+  <section id="<%= name %>_section">
+    <div class="page-header">
+      <h2><%= name %> resource</h2>
+    </div>
+    <div class="accordion" id="accordion2">
+    <% requests.each do |req| %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<%= req.object_id %>">
+          <span><span class="label label-info"><%= req.action %></span><h4 style="display:inline;"><%= req.uri %></h4></span>
+        </a>
+      </div>
+      <div id="<%= req.object_id %>" class="accordion-body collapse">
+      <div class="accordion-inner">
+	<ul class="nav nav-tabs">
+	  <li class="active"><a href="#description"  data-toggle="tab">Description</a></li>
+	  <li><a href="#header" data-toggle="tab">Header</a></li>
+	  <li><a href="#parameters" data-toggle="tab">Parameters</a></li>
+	  <li><a href="#response" data-toggle="tab">Response</a></li>
+	</ul>
+        <div class="tab-content">
+	 <div class="tab-pane active" id="description"><%= req.description %></div>
+	 <div class="tab-pane" id="header">...</div>
+	 <div class="tab-pane" id="parameters">...</div>
+	 <div class="tab-pane" id="response">...</div>
+        </div>
+       </div>
+     </div>
+    </div>
+    <% end %>
+   </div>
+ </section>
+<% end %>
+</div>
+</div>
+</div>
+</body>
 </html>

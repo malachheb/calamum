@@ -7,25 +7,44 @@ class Calamum::DefinitionParser
   end
 
   def get_resources
-    @api_definition['resources']
+    @definition['resources']
+  end
+
+  def get_name
+    @definition['name']
+  end
+
+  def get_url
+    @definition['url']
   end
 
   def get_resources_names
-    @api_definition['resources'].inject([]){|resources, (key, content)| resources << key}
+    @definition['resources'].inject([]){|resources, (key, content)| resources << key}
   end
   
-  def load_requests()
-    @definition.each do |resource, requests|
+  def load_requests
+    self.get_resources.each do |resource, requests|
       @resources[resource] = []
-      requests.each_with_index do |request, index|
-         @resources[resource][index]= initialize_request(request)
+      index = 0
+      requests.each do |request|
+        req = initialize_request(request)
+        unless req.nil?
+          @resources[resource][index]= initialize_request(request)
+          index += 1
+        end
       end
     end
     @resources
   end
 
   def initialize_request(request)
-    req =  Calamum::Request.new({uri: request['uri'], action: request['action'], params: request['params'], description: request['description'], content_type: request['content_type']})
+    req = Calamum::Request.new({
+                                 :uri =>  request['uri'], 
+                                 :action => request['action'],
+                                 :params => request['params'], 
+                                 :description => request['description'],
+                                 :content_type=> request['content_type']
+                               })
     if req.errors.empty?
       $stderr.puts "[INFO] Request #{request['action']}: #{request['uri']} loading success"
       req

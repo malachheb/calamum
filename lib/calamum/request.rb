@@ -14,6 +14,7 @@ class Calamum::Request
     @action= attrs[:action].upcase
     @params= attrs[:params]
     @content_type = attrs[:content_type]
+    @description = attrs[:description]
     @errors = ActiveModel::Errors.new(self)
     self.valid?
   end
