@@ -1,10 +1,10 @@
 name: 'Drive'
-url: 'http://localhost:3000'
+url: 'http://localhost:3000/api'
 resources:
     user:   
      -
       uri: '/users'
-      action: ''
+      action: 'get'
       content_type: 'application/json'
       description: 'Get the list of the users'
      -

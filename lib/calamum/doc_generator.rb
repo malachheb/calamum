@@ -1,11 +1,13 @@
 
 class Calamum::DocGenerator
   include ERB::Util
-  attr_accessor :resources, :templaete
+  attr_accessor :resources, :templaete, :name, :url
 
-  def initialize(template, resources)
+  def initialize(template, resources, name, url)
     @template = template
     @resources = resources
+    @name = name
+    @url = url
   end
 
   def render()

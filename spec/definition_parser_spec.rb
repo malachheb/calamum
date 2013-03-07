@@ -7,7 +7,7 @@ describe Calamum::DefinitionParser do
     @api_definition.load_requests
   end
 
-  specify{@api_definition.get_resources.should == ['user', 'group']}
+  specify{@api_definition.get_resources_names.should == ['user', 'group']}
   specify{@api_definition.get_resource_uris('user').size.should == 2}
   specify{@api_definition.resources['user'].size.should == 2}
   specify{@api_definition.resources['user'][0].errors.should be_empty}

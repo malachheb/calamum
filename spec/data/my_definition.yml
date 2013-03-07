@@ -1,18 +1,21 @@
-user:
-  -
-   uri: '/users'
-   action: 'get'
-   content_type: 'application/json'
-   description: 'Get the list of the users'
-  -
-   uri: '/users/:id'
-   action: 'get'
-   params:
-     id: 
-         type: 'String'
-group:
-  -
-   uri: '/groups'
-   action: 'get'
-   content_type: 'application/json'
-   description: 'Get the list og groups'
+name: 'Drive'
+url: 'http://localhost:3000/api'
+resources:
+    user:   
+     -
+      uri: '/users'
+      action: 'GET'
+      content_type: 'application/json'
+      description: 'Get the list of the users'
+     -
+      uri: '/users/:id'
+      action: 'GET'
+      params:
+      id: 
+        type: 'String'
+    group:
+     -
+      uri: '/groups'
+      action: 'GET'
+      content_type: 'application/json'
+      description: 'Get the list og groups'
