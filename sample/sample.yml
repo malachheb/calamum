@@ -1,19 +1,21 @@
-user:
-  -
-   label: 'get_users'
-   uri: '/users'
-   action: 'get'
-   params:
-     id: 'test'
-  -
-   label: 'get_user'
-   uri: '/users/:id'
-   action: 'get'
-   params:
-     id: 'id'
-group:
-  -
-   label: 'get_groups'
-   uri: '/groups'
-   action: 'get'
-   params:
+name: 'Drive'
+url: 'http://localhost:3000'
+resources:
+    user:   
+     -
+      uri: '/users'
+      action: ''
+      content_type: 'application/json'
+      description: 'Get the list of the users'
+     -
+      uri: '/users/:id'
+      action: 'get'
+      params:
+      id: 
+        type: 'String'
+    group:
+     -
+      uri: '/groups'
+      action: 'get'
+      content_type: 'application/json'
+      description: 'Get the list og groups'
