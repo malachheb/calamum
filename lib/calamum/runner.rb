@@ -67,9 +67,10 @@ class Calamum::Runner
     Calamum::Config.merge!(config)
     api_definition = YAML.load(File.open(config[:definition]))
     @definition = Calamum::DefinitionParser.new(api_definition)
+    resources = @definition.initialize_resources_requests
     template = Calamum::DocGenerator.load_template
-    html_output = Calamum::DocGenerator.new(template, @definition.get_resources)
-    html_output.save_result(File.join(ENV['HOME'], 'list.html'))
+    html_output = Calamum::DocGenerator.new(template, resources)
+    html_output.save_result(File.join(ENV['HOME'], 'doc', 'list.html'))
   end
   
 

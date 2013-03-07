@@ -6,16 +6,26 @@ class Calamum::DefinitionParser
   end
 
   def get_resources
-    @api_definition.inject([]){|resources, (key, content)| resources << key}
+    @api_definition['resources']
+  end
+
+  def get_resources_names
+    @api_definition['resources'].inject([]){|resources, (key, content)| resources << key}
   end
   
   def initialize_resources_requests
     resources = Hash.new
-    @api_definition.each do |resource, requests|
+    get_resources.each do |resource, requests|
       resources[resource] = Array.new
+      $stdout.puts "[INFO] Resource #{resource}"
       requests.each_with_index do |request, index|
-        attrs = {uri: request['uri'], action: request['action'], params: request['params'], description: request['description'], content_type: request['content_type']}
-        resources[resource][index]= Calamum::Request.new(attrs)
+        req = Calamum::Request.new({uri: request['uri'], action: request['action'], params: request['params'], description: request['description'], content_type: request['content_type']})
+        if req.valid?
+          $stdout.puts "  [INFO] Request '#{req}' load success"
+          resources[resource][index]= req
+        else
+          $stderr.puts "  [ERROR] Request '#{req}' load failed, #{req.errors}"
+        end
       end
     end
     resources

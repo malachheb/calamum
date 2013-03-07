@@ -18,6 +18,8 @@ class Calamum::Request
     self.valid?
   end
   
-  
+  def to_s
+    "#{action}: #{uri}"
+  end
   
 end
