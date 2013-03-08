@@ -11,8 +11,24 @@ resources:
       uri: '/users/:id'
       action: 'get'
       params:
-      id: 
-        type: 'String'
+        id: 
+          type: 'String'
+     -
+      uri: '/users/:id'
+      action: 'put'
+      params:
+        id: 
+          type: 'String'
+          description: 'User id'
+          required: true
+        name:
+          type: 'String'
+          description: 'User name'
+          required: false
+        email:
+          type: 'String'
+          description: 'User email'
+          required: true
     group:
      -
       uri: '/groups'

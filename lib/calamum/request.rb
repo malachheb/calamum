@@ -12,7 +12,7 @@ class Calamum::Request
   def initialize(attrs)
     @uri= attrs[:uri]
     @action= attrs[:action].upcase
-    @params= attrs[:params]
+    @params= attrs[:params] || {}
     @content_type = attrs[:content_type]
     @description = attrs[:description]
     @errors = ActiveModel::Errors.new(self)
