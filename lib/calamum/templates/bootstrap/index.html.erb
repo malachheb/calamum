@@ -35,14 +35,14 @@
   <% @resources.each do |name, requests| %>
   <section id="<%= name %>_section">
     <div class="page-header">
-      <h2><%= name %> resource</h2>
+      <h2><%= name.capitalize %> resource</h2>
     </div>
     <div class="accordion" id="accordion2">
     <% requests.each do |req| %>
     <div class="accordion-group">
       <div class="accordion-heading">
 	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<%= req.object_id %>">
-          <span><span class="label label-info"><%= req.action %></span><h4 style="display:inline;"><%= req.uri %></h4></span>
+          <span><span class="label <%= req.action_label %>"><%= req.action %></span><h4 style="display:inline;"><%= "  #{req.uri}" %></h4></span>
         </a>
       </div>
       <div id="<%= req.object_id %>" class="accordion-body collapse">
@@ -55,7 +55,28 @@
 	</ul>
         <div class="tab-content">
 	 <div class="tab-pane active" id="description_<%= req.object_id %>"><%= req.description %></div>
-	 <div class="tab-pane" id="header_<%= req.object_id %>">...</div>
+	 <div class="tab-pane" id="header_<%= req.object_id %>">
+	   <% unless req.params.empty? %>
+	   <table class="table table-bordered table-hover">
+	     <thead>
+	       <tr>
+		 <th>Key</th>
+		 <th>Value</th>
+	       </tr>
+	     </thead>
+	     <tbody>
+	       <% req.headers.each do |key, content| %>
+	       <tr>
+		 <td><%= key %></td>
+		 <td><%= content %></td>
+	       </tr>
+	       <% end %>
+	     </tbody>
+	   </table>
+	   <% else %>
+	      Request without headers
+	   <% end %>
+	 </div>
 	 <div class="tab-pane" id="params_<%= req.object_id %>">
 	   <% unless req.params.empty? %>
 	   <table class="table table-bordered table-hover">
@@ -78,9 +99,11 @@
 	       <% end %>
 	     </tbody>
 	   </table>
+	   <% else %>
+	      Request without parametres
 	   <% end %>
 	 </div>
-	 <div class="tab-pane" id="response_<%= req.object_id %>">...</div>
+	 <div class="tab-pane" id="response_<%= req.object_id %>"><%= req.response %></div>
         </div>
        </div>
      </div>
