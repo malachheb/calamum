@@ -29,7 +29,7 @@ class Calamum::DefinitionParser
       requests.each do |request|
         req = initialize_request(request)
         unless req.nil?
-          @resources[resource][index]= initialize_request(request)
+          @resources[resource][index]= req
           index += 1
         end
       end

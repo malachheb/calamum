@@ -65,12 +65,21 @@ class Calamum::Runner
   def run
     parse_options
     Calamum::Config.merge!(config)
-    api_definition = YAML.load(File.open(config[:definition]))
+    api_definition = load_definition_file
     @definition = Calamum::DefinitionParser.new(api_definition)
     @definition.load_requests
     template = Calamum::DocGenerator.load_template
     html_output = Calamum::DocGenerator.new(template, @definition.resources, @definition.get_name, @definition.get_url)
     html_output.save_result(File.join(ENV['HOME'], 'doc', 'index.html'))
+  end
+
+  def load_definition_file
+    begin
+       YAML.load(File.open(config[:definition]))
+    rescue => e
+       $stderr.puts e.message
+       exit(1)
+    end
   end
 
 end
