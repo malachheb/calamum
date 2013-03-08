@@ -21,7 +21,7 @@ class Calamum::DefinitionParser
   def get_resources_names
     @definition['resources'].inject([]){|resources, (key, content)| resources << key}
   end
-  
+
   def load_requests
     self.get_resources.each do |resource, requests|
       @resources[resource] = []
@@ -39,11 +39,12 @@ class Calamum::DefinitionParser
 
   def initialize_request(request)
     req = Calamum::Request.new({
-                                 :uri =>  request['uri'], 
+                                 :uri =>  request['uri'],
                                  :action => request['action'],
-                                 :params => request['params'], 
+                                 :params => request['params'],
                                  :description => request['description'],
-                                 :content_type=> request['content_type']
+                                 :headers => request['headers'],
+                                 :response => request['response'],
                                })
     if req.errors.empty?
       $stderr.puts "[INFO] Request #{request['action']}: #{request['uri']} loading success"
