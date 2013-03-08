@@ -47,10 +47,10 @@ class Calamum::DefinitionParser
                                  :response => request['response'],
                                })
     if req.errors.empty?
-      $stderr.puts "[INFO] Request #{request['action']}: #{request['uri']} loading success"
+      puts_info "Request #{request['action']}: #{request['uri']} loading success"
       req
     else
-      $stderr.puts "[ERROR] Request #{request['action']}: #{request['uri']} not valid: #{req.errors}"
+      puts_error "Request #{request['action']}: #{request['uri']} not valid: #{req.errors}"
       nil
     end
   end

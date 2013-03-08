@@ -29,9 +29,17 @@ class Calamum::DocGenerator
     FileUtils.rm_r(File.join(ENV['HOME'], 'doc'), :force => true)
     Dir.mkdir File.join(ENV['HOME'], 'doc')
     Dir.mkdir File.join(ENV['HOME'], 'doc', 'assets')
-    src = File.join(File.dirname(__FILE__), "templates", "bootstrap", "assets")
+    copy_assets
+  end
+
+  def copy_assets
+    src = File.join(File.dirname(__FILE__), "templates", Calamum::Config[:template], "assets")
     dst = File.join(ENV['HOME'], 'doc', 'assets')
-    FileUtils.copy_entry(src, dst)
+    begin
+      FileUtils.copy_entry(src, dst)
+    rescue => e
+      puts_error e.message
+    end
   end
 
 end

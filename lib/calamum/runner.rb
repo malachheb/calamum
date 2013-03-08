@@ -1,11 +1,3 @@
-#require 'api_doc/application'
-#require 'home5k/user'
-#require 'home5k/misc'
-#require 'restclient'
-#require 'json/pure'
-#require 'uri'
-#require 'progressbar'
-#require 'facter'
 require 'calamum'
 require 'calamum/config'
 require 'calamum/doc_generator'
@@ -17,15 +9,7 @@ class Calamum::Runner
 
   def initialize
     super
-    # trap("TERM") do
-    #   Home5k::Application.fatal!("SIGTERM received, stopping", 1)
-    # end
-
-    # trap("INT") do
-    #   Home5k::Application.fatal!("SIGINT received, stopping", 2)
-    # end
   end
-
 
   option :help,
     :short        => "-h",
@@ -44,26 +28,28 @@ class Calamum::Runner
     :proc         => lambda {|v| puts "Calamum: #{Calamum::VERSION}"},
     :exit         => 0
 
-  option :dryrun,
-    :long         => "--dryrun",
+  option :debug,
+    :short        => "-d",
+    :long         => "--debug",
     :description  => "Show actions to do (default)",
     :boolean      => true,
     :default      => true,
     :proc         => lambda { |p| true }
 
   option :definition,
-    :short        => "-d DEFINITION",
-    :long         => "--definition DEFINITION",
+    :short        => "-f DEFINITION",
+    :long         => "--file DEFINITION",
     :description  => "Definition YAML file",
     :required => true
 
   option :template,
     :short        => "-t TEMPLATE",
     :long         => "--template TEMPLATE",
-    :description  => "Documentation HTML template"
+    :description  => "Documentation HTML template",
+    :default      =>  "bootstrap"
 
   def run
-    parse_options
+    load_options
     Calamum::Config.merge!(config)
     api_definition = load_definition_file
     @definition = Calamum::DefinitionParser.new(api_definition)
@@ -77,8 +63,15 @@ class Calamum::Runner
     begin
        YAML.load(File.open(config[:definition]))
     rescue => e
-       $stderr.puts e.message
-       exit(1)
+      puts_error e.message
+    end
+  end
+
+  def load_options
+    begin
+      parse_options
+    rescue => e
+      puts_error e.message
     end
   end
 
