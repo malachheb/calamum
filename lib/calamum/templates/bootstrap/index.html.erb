@@ -7,6 +7,7 @@
 <link href="./assets/stylesheets/bootstrap.css" rel="Stylesheet"/>
 <link href="./assets/stylesheets/bootstrap-responsive.css" rel="Stylesheet"/>
 <link href="./assets/stylesheets/docs.css" rel="Stylesheet"/>
+<link href="./assets/stylesheets/main.css" rel="Stylesheet"/>
 <script type="text/javascript" src="./assets/javascripts/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="./assets/javascripts/bootstrap.js"></script>
 <title>Rails Api Doc</title>
@@ -40,7 +41,7 @@
     <div class="accordion" id="accordion2">
     <% requests.each do |req| %>
     <div class="accordion-group">
-      <div class="accordion-heading">
+      <div class="accordion-heading <%= req.action.downcase %>Header">
 	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<%= req.object_id %>">
           <span><span class="label <%= req.action_label %>"><%= req.action %></span><h4 style="display:inline;"><%= "  #{req.uri}" %></h4></span>
         </a>
@@ -103,7 +104,7 @@
 	      Request without parametres
 	   <% end %>
 	 </div>
-	 <div class="tab-pane" id="response_<%= req.object_id %>"><%= req.response %></div>
+	 <div class="tab-pane" id="response_<%= req.object_id %>"><code><%= req.response %></code></div>
         </div>
        </div>
      </div>

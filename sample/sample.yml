@@ -1,5 +1,5 @@
-name: 'Drive'
-url: 'http://localhost:3000/api'
+name: 'Calamum'
+url: 'http://calamum-sample:3000/api'
 resources:
     user:   
      -
@@ -8,6 +8,7 @@ resources:
       headers:
         content_type: 'application/json'
       description: 'Get the users list'
+      response: '{"users":[{"id":"12354","name":"test", "mail":"test@test.com"}, {"id":"123789","name":"test2", "mail":"test@test.com"}}'
      -
       uri: '/users/:id'
       action: 'get'
@@ -19,9 +20,12 @@ resources:
           type: 'String'
           description: 'User id'
           required: true
+      response: '{"user":{"name":"test", "mail":"test@test.com"}}'
+
      -
-      uri: '/users/:id'
-      action: 'put'
+      uri: '/users'
+      action: 'post'
+      description: 'Create a new user'
       headers:
         content_type: 'application/json'
         content_language: 'en-US'
@@ -37,6 +41,38 @@ resources:
         email:
           type: 'String'
           description: 'User email'
+          required: true
+     -
+      uri: '/users/:id'
+      action: 'put'
+      description: 'Update the user'
+      headers:
+        content_type: 'application/json'
+        content_language: 'en-US'
+      params:
+        id: 
+          type: 'String'
+          description: 'User id'
+          required: true
+        name:
+          type: 'String'
+          description: 'User name'
+          required: false
+        email:
+          type: 'String'
+          description: 'User email'
+          required: true
+     -
+      uri: '/users/:id'
+      action: 'delete'
+      description: 'Delete the user'
+      headers:
+        content_type: 'application/json'
+        content_language: 'en-US'
+      params:
+        id: 
+          type: 'String'
+          description: 'User id'
           required: true
     group:
      -
