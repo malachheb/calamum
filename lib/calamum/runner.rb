@@ -48,6 +48,12 @@ class Calamum::Runner
     :description  => "Documentation HTML template",
     :default      =>  "bootstrap"
 
+  option :path,
+    :short        => "-p PATH",
+    :long         => "--path PATH",
+    :description  => "The distination path for the generated doc directory",
+    :default      =>  ENV['HOME']
+
   def run
     load_options
     Calamum::Config.merge!(config)
@@ -56,7 +62,7 @@ class Calamum::Runner
     @definition.load_requests
     template = Calamum::DocGenerator.load_template
     html_output = Calamum::DocGenerator.new(template, @definition.resources, @definition.get_name, @definition.get_url)
-    html_output.save_result(File.join(ENV['HOME'], 'doc', 'index.html'))
+    html_output.save_result(File.join(Calamum::Config[:path], 'doc', 'index.html'))
   end
 
   def load_definition_file

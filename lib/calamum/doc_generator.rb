@@ -26,20 +26,36 @@ class Calamum::DocGenerator
   end
 
   def initialize_doc_dir
-    FileUtils.rm_r(File.join(ENV['HOME'], 'doc'), :force => true)
-    Dir.mkdir File.join(ENV['HOME'], 'doc')
-    Dir.mkdir File.join(ENV['HOME'], 'doc', 'assets')
+    create_doc_dir
+    Dir.mkdir File.join(Calamum::Config[:path], 'doc', 'assets')
     copy_assets
   end
 
   def copy_assets
     src = File.join(File.dirname(__FILE__), "templates", Calamum::Config[:template], "assets")
-    dst = File.join(ENV['HOME'], 'doc', 'assets')
+    dst = File.join(Calamum::Config[:path], 'doc', 'assets')
     begin
       FileUtils.copy_entry(src, dst)
     rescue => e
       puts_error e.message
     end
+  end
+
+  def create_doc_dir
+    doc_dir = File.join(Calamum::Config[:path], 'doc')
+    if File.exist?(doc_dir)
+      while true
+        print "The filename directoy #{doc_dir} already exists. Do you want to overwrite it? [Y/N]: "
+        case $stdin.gets.chomp!.downcase
+        when 'y'
+          FileUtils.rm_r(doc_dir, :force => true)
+          break
+        when 'n'
+         exit(1) 
+        end
+      end
+    end
+    Dir.mkdir doc_dir
   end
 
 end

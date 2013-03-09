@@ -1,4 +1,3 @@
-require 'logger'
 require 'yaml'
 require 'pry'
 require 'erb'

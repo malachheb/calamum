@@ -1,3 +1,4 @@
+
 class Calamum::DefinitionParser
   attr_accessor :definition, :resources
 
