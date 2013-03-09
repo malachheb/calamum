@@ -8,7 +8,7 @@ Calamum is a simple ruby build program to generate a REST API documentation from
 
 ### Gem Installation
 
-Download and install rake with the following.
+Download and install calamum with the following.
 
     $gem install calamum
 

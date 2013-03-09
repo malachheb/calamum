@@ -7,9 +7,9 @@ Gem::Specification.new do |gem|
   gem.version       = Calamum::VERSION
   gem.authors       = ["Mehrez Alachheb"]
   gem.email         = ["lachheb.mehrez@gmail.com"]
-  gem.description   = %q{provides a framework to generate a rest api documentaion}
-  gem.summary       = %q{provides a framework to generate a rest api documentaion}
-  gem.homepage      = ""
+  gem.description   = %q{Calamum is a simple ruby build program to generate a REST API documentation from a YAML file definition}
+  gem.summary       = %q{Calamum is a simple ruby build program to generate a REST API documentation from a YAML file definition}
+  gem.homepage      = "https://github.com/malachheb/liblvm"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
