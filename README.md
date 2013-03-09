@@ -29,7 +29,11 @@ A simple example file 'sample.yml' in sample directory.
 Next just run the calamum command as following:
      
      $calamum -f my_api_definition.yml
+     
+To execute with the sample YAML file
+   
+     $calamum -f sample/sample.yml
 
-A "doc" directory is generated (by default in your home path, to change it specify the option '-p/--path') with a index file that contain your API Documentation.
+A "doc" directory is generated with a index file that contain your API Documentation. (by default in your home path, you can specify the destination path with the option '-p/--path') 
 
 Open the index.html file in your browser to show your api doc. 
