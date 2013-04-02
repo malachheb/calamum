@@ -61,7 +61,8 @@ class Calamum::Runner
     @definition = Calamum::DefinitionParser.new(api_definition)
     @definition.load_requests
     template = Calamum::DocGenerator.load_template
-    html_output = Calamum::DocGenerator.new(template, @definition.resources, @definition.get_name, @definition.get_url)
+    html_output = Calamum::DocGenerator.new(template,
+        @definition.resources, @definition.get_name, @definition.get_url, @definition.get_description)
     html_output.save_result(File.join(Calamum::Config[:path], 'doc', 'index.html'))
   end
 
