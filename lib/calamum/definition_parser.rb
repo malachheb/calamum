@@ -19,6 +19,10 @@ class Calamum::DefinitionParser
     @definition['url']
   end
 
+  def get_description
+    @definition['description']
+  end
+
   def get_resources_names
     @definition['resources'].inject([]){|resources, (key, content)| resources << key}
   end
