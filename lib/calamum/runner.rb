@@ -54,6 +54,13 @@ class Calamum::Runner
     :description  => "The distination path for the generated doc directory",
     :default      =>  ENV['HOME']
 
+  option :sort,
+    :short        => "-s",
+    :long         => "--sort",
+    :description  => "Sort the resources alphabetically",
+    :boolean      => true,
+    :default      => false
+
   def run
     load_options
     Calamum::Config.merge!(config)
