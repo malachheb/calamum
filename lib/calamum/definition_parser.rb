@@ -8,7 +8,7 @@ class Calamum::DefinitionParser
   end
 
   def get_resources
-    @definition['resources']
+    Calamum::Config[:sort]? @definition['resources'].sort : @definition['resources']
   end
 
   def get_name
