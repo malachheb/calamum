@@ -15,8 +15,17 @@ class Calamum::DocGenerator
     ERB.new(@template).result(binding)
   end
 
+  def self.get_template_base
+    template_opt = Calamum::Config[:template]
+    if template_opt.start_with?('/')
+        return template_opt
+    else
+        return File.join(File.dirname(__FILE__), "templates", template_opt)
+    end
+  end
+
   def self.load_template
-    File.read(File.join(File.dirname(__FILE__), "templates", "bootstrap", "index.html.erb"))
+    File.read(File.join(get_template_base, "index.html.erb"))
   end
   
   def save_result(file)
@@ -33,7 +42,7 @@ class Calamum::DocGenerator
   end
 
   def copy_assets
-    src = File.join(File.dirname(__FILE__), "templates", Calamum::Config[:template], "assets")
+    src = File.join(Calamum::DocGenerator.get_template_base, "assets")
     dst = File.join(Calamum::Config[:path], 'doc', 'assets')
     begin
       FileUtils.copy_entry(src, dst)
