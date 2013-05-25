@@ -1,9 +1,0 @@
-require 'yaml'
-require 'pry'
-require 'erb'
-require 'active_model'
-require 'calamum/calamum_helper'
-require "calamum/version"
-require "calamum/config"
-require "calamum/definition_parser"
-require "calamum/request"
