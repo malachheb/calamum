@@ -26,3 +26,8 @@ You could find an example of API definition in the sample.json. Next, just run t
 To preview just generated documentation, navigate to the 'docs' directory (by default in your home path, but you can specify the destination path with the option '-p/--path').
 Then, find and open the index.html file in your browser and enjoy the result.
 
+## Inspirations
+- [Apiary](http://apiary.io/blueprint)
+- [IO Docs](https://github.com/mashery/iodocs)
+- [Swagger](https://developers.helloreverb.com/swagger)
+
