@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= @resource.uri %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <div id="page">
+
+      <div id="header-outer">
+        <div id="header">
+          <a href="/" id="logo" title="Home"><%= @name %></a>
+
+          <ul id="title-nav">
+            <li><a href="overview.html">Overview</a></li>
+            <li><a href="authentication.html">Authentication</a></li>
+            <li><a href="entities.html">Entities</a></li>
+            <li><a href="index.html">Resources</a></li>
+            <li><a href="errors.html">Errors</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="content-outer">
+        <div class="page-header">
+          <h1><%= @resource.action %> <%= @resource.uri %></h1>
+        </div>
+
+        <div id="content-main">
+          <div class="field field-el">
+            <h2>Description</h2>
+            <p><%= @resource.description.join('<br/>') %></p>
+          </div>
+
+          <div class="field">
+            <h2>Parameters</h2>
+            <div class="odd">
+              <% @resource.params.each do |key, content| %>
+                <div class="parameter">
+                  <span class="param"><%= key %>
+                    <span><%= content['required'] ? 'required' : 'optional' %>, type: <%= content['type'] %></span>
+                  </span>
+                  <p><%= content['description'] %></p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <% if @resource.response %>
+            <div class="group-example-request">
+              <h2>Example Response</h2>
+              <div class="content">
+                <pre class="prettyprint"><%= pj @resource.response %></pre>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="sidebar-last">
+          <div class="block api-doc-block">
+            <h2>Resource Information</h2>
+            <table>
+              <tbody>
+                <tr>
+                  <td>API Version</td>
+                  <td><%= @version %></td>
+                </tr>
+                <tr>
+                  <td>HTTP Method</td>
+                  <td><%= @resource.action %></td>
+                </tr>
+                <tr>
+                  <td>Login Required</td>
+                  <td><%= @resource.auth %></td>
+                </tr>
+                <tr>
+                  <td>Response Format</td>
+                  <td>application/json</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="footer-outer">
+        <div id="footer"><%= @name %> &copy; 2013</div>
+      </div>
+
+    </div>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  </body>
+</html>
