@@ -1,39 +1,32 @@
-Calamum 
-=============
+calamum
+=======
 
-Calamum is a simple ruby build program to generate a REST API documentation from a YAML file definition.
+Calamum is a simple tool to generate a REST API documentation from a JSON file definition.
 
 ## Installation
-
-
-### Gem Installation
-
-Download and install calamum with the following.
-
-    $gem install calamum
+Download and install calamum: `gem install calamum`
 
 ## Usage
+```
+calamum -h
+Usage: /bin/calamum (options)
+  -d, --debug                      Show actions to do (true by default)
+  -f, --file DEFINITION            Path to the file with JSON API definition
+  -p, --path PATH                  Path to the directory where docs will be generated
+  -t, --template TEMPLATE          Name of HTML template (twitter by default)
+  -v, --version                    Show version number
+  -h, --help                       Show this help
+```
 
-     calamum -h
-     Usage: /bin/calamum (options)
-       -d, --debug                      Show actions to do (default)
-       -f, --file DEFINITION            Definition YAML file (required)
-       -p, --path PATH                  The distination path for the generated doc directory
-       -t, --template TEMPLATE          Documentation HTML template
-       -v, --version                    Show calamum version
-       -h, --help                       Show this message
-### Simple Example
-First, you must write a YAML file which contains the definition of your REST API.
-A simple example file 'sample.yml' in sample directory.
+To generate a documentation you should write a definition of your REST API in JSON format.
+<br/>
+You could find an example of API definition in the [sample.json](/sample/sample.json). Next, just run the calamum command.
 
-Next just run the calamum command as following:
-     
-     $calamum -f my_api_definition.yml
-     
-To execute with the sample YAML file
-   
-     $calamum -f sample/sample.yml
+    $calamum -f my_api_definition.json
+To preview just generated documentation, navigate to the 'docs' directory (by default in your home path, you can specify the destination path with the option '-p/--path').
+Then, find and open the index.html file in your browser and enjoy the result.
 
-A "doc" directory is generated with a index file that contain your API Documentation. (by default in your home path, you can specify the destination path with the option '-p/--path') 
-
-Open the index.html file in your browser to show your api doc. 
+## Inspirations
+- [Apiary](http://apiary.io/blueprint)
+- [IO Docs](https://github.com/mashery/iodocs)
+- [Swagger](https://developers.helloreverb.com/swagger)

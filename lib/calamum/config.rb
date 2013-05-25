@@ -1,13 +1,20 @@
 require 'calamum'
 require 'mixlib/config'
 
-module Calamum
-  class Config
-    extend Mixlib::Config
+# Provides a class-based configuration object.
+# See https://github.com/opscode/mixlib-config
+class Calamum::Config
+  extend Mixlib::Config
 
-    def self.inspect
-      configuration.inspect
-    end
+  def self.inspect
+    configuration.inspect
+  end
 
-  end 
+  def self.apply(config)
+    merge!(config)
+
+    self.doc_path = File.join(config[:path], 'docs')
+    self.tpl_path = File.join(File.dirname(__FILE__), 'templates', config[:template])
+  end
+
 end

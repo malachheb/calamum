@@ -1,62 +1,33 @@
-
 class Calamum::DocGenerator
-  include ERB::Util
-  attr_accessor :resources, :template, :name, :url, :description
+  attr_accessor :template
 
-  def initialize(template, resources, name, url, descr)
-    @template = template
-    @resources = resources
-    @name = name
-    @url = url
-    @description = descr
+  def initialize(tpl_name)
+    tpl_path = Calamum::Config[:tpl_path]
+    filename = "#{tpl_path}/#{tpl_name}.html.erb"
+
+    @template = ERB.new(File.read(filename))
   end
 
-  def render()
-    ERB.new(@template).result(binding)
+  def self.init_base_dir
+    tpl_path = Calamum::Config[:tpl_path]
+    doc_path = Calamum::Config[:doc_path]
+    FileUtils.rm_r(doc_path, :force => true)
+    Dir.mkdir(doc_path)
+
+    # copy assets from template directory
+    source = File.join(tpl_path, 'assets')
+    target = File.join(doc_path, 'assets')
+    FileUtils.copy_entry(source, target)
   end
 
-  def self.load_template
-    File.read(File.join(File.dirname(__FILE__), "templates", "bootstrap", "index.html.erb"))
-  end
-  
-  def save_result(file)
-    initialize_doc_dir
-    File.open(file, "w+") do |f|
-      f.write(render)
+  def save_template(filename, values)
+    values.each do |k, v|
+      instance_variable_set("@#{k}", v)
     end
-  end
 
-  def initialize_doc_dir
-    create_doc_dir
-    Dir.mkdir File.join(Calamum::Config[:path], 'doc', 'assets')
-    copy_assets
-  end
-
-  def copy_assets
-    src = File.join(File.dirname(__FILE__), "templates", Calamum::Config[:template], "assets")
-    dst = File.join(Calamum::Config[:path], 'doc', 'assets')
-    begin
-      FileUtils.copy_entry(src, dst)
-    rescue => e
-      puts_error e.message
-    end
-  end
-
-  def create_doc_dir
-    doc_dir = File.join(Calamum::Config[:path], 'doc')
-    if File.exist?(doc_dir)
-      while true
-        print "The filename directoy #{doc_dir} already exists. Do you want to overwrite it? [Y/N]: "
-        case $stdin.gets.chomp!.downcase
-        when 'y'
-          FileUtils.rm_r(doc_dir, :force => true)
-          break
-        when 'n'
-         exit(1) 
-        end
-      end
-    end
-    Dir.mkdir doc_dir
+    html_data = @template.result(binding)
+    filename = File.join(Calamum::Config[:doc_path], filename)
+    File.open(filename, 'w+') { |file| file.write(html_data) }
   end
 
 end

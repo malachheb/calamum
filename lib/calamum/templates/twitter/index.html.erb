@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Developers API</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="no-sidebars">
+    <div id="page">
+
+      <div id="header-outer">
+        <div id="header">
+          <a href="/" id="logo" title="Home"><%= @name %></a>
+
+          <ul id="title-nav">
+            <li><a href="overview.html">Overview</a></li>
+            <li><a href="authentication.html">Authentication</a></li>
+            <li><a href="entities.html">Entities</a></li>
+            <li><a href="index.html">Resources</a></li>
+            <li><a href="errors.html">Errors</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="content-outer">
+        <h1>REST API v.<%= @version %></h1>
+        <div class="content api-docs">
+          <% @resources.each do |name, endpoints| %>
+            <table>
+              <caption>
+                <strong><%= name.capitalize %></strong>
+                <p>This endpoints belong to <%= name %> resource.</p>
+              </caption>
+              <thead>
+                <tr>
+                  <th class="views-field-title">Resource</th>
+                  <th class="views-field-title">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% endpoints.each do |resource| %>
+                  <tr>
+                    <td class="views-field-title">
+                      <a href="<%= resource.object_id %>.html"><%= resource.action %> <%= resource.uri %></a>
+                    </td>
+                    <td class="views-field-body">
+                      <%= resource.description.join('<br/>') %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="footer-outer">
+        <div id="footer"><%= @name %> &copy; 2013</div>
+      </div>
+
+    </div>
+  </body>
+</html>

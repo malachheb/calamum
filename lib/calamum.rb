@@ -1,9 +1,12 @@
-require 'yaml'
-require 'pry'
 require 'erb'
-require 'active_model'
-require 'calamum/calamum_helper'
-require "calamum/version"
-require "calamum/config"
-require "calamum/definition_parser"
-require "calamum/request"
+require 'yajl'
+require 'fileutils'
+
+module Calamum
+  require 'calamum/config'
+  require 'calamum/helpers'
+  require 'calamum/resource'
+  require 'calamum/doc_parser'
+  require 'calamum/doc_generator'
+  require 'calamum/version'
+end
