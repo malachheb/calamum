@@ -30,4 +30,3 @@ Then, find and open the index.html file in your browser and enjoy the result.
 - [Apiary](http://apiary.io/blueprint)
 - [IO Docs](https://github.com/mashery/iodocs)
 - [Swagger](https://developers.helloreverb.com/swagger)
-

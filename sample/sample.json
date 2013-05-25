@@ -1,0 +1,228 @@
+{
+    "name": "Sample REST API",
+    "url": "http://api.sample.com",
+    "resources": {
+        "user": [
+            {
+                "action": "GET",
+                "uri": "/users.json",
+                "description": ["Retrieve all the registered users."],
+                "params": {
+                    "page": {
+                        "type": "integer",
+                        "description": "Page to show",
+                        "required": true
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Amount of results (max: 100)",
+                        "required": true
+                    },
+                    "query": {
+                        "type": "string",
+                        "description": "Text to search users",
+                        "required": false
+                    }
+                },
+                "response": {
+                    "data": [
+                        {
+                            "id": 207119551,
+                            "first_name": "John",
+                            "last_name": "Doe",
+                            "email": "jdoe@gmail.com",
+                            "state": "active",
+                            "note": null,
+                            "created_at": "2013-03-26T15:42:36-04:00",
+                            "updated_at": "2013-03-26T15:42:36-04:00"
+                        },
+                        {
+                            "id": 209871202,
+                            "first_name": "Bob",
+                            "last_name": "Norman",
+                            "email": "bob.norman@hotmail.com",
+                            "state": "active",
+                            "note": "See my profile at http://58745954.io",
+                            "created_at": "2013-03-30T19:21:00-04:00",
+                            "updated_at": "2013-03-30T19:21:00-04:00"
+                        }
+                    ],
+                    "total": 1050
+                }
+            },
+            {
+                "action": "GET",
+                "uri": "/users/207119551.json",
+                "description": ["Receive a single user."],
+                "params": {
+                    "id": {
+                        "type": "integer",
+                        "description": "ID of the user's profile",
+                        "required": true
+                    }
+                },
+                "response": {
+                    "id": 207119551,
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "email": "jdoe@gmail.com",
+                    "state": "active",
+                    "note": null,
+                    "created_at": "2013-03-26T15:42:36-04:00",
+                    "updated_at": "2013-03-26T15:42:36-04:00"
+                }
+            },
+            {
+                "action": "POST",
+                "uri": "/users.json",
+                "description": ["Create a new user."],
+                "params": {
+                    "email": {
+                        "type": "string",
+                        "description": "The primary e-mail of user",
+                        "required": true
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "description": "The name of the user",
+                        "required": true
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "description": "The user's last name",
+                        "required": true
+                    },
+                    "note": {
+                        "type": "string",
+                        "description": "Additional note for user",
+                        "required": false
+                    }
+                },
+                "response": {
+                    "id": 207119551,
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "email": "jdoe@gmail.com",
+                    "state": "active",
+                    "note": null,
+                    "created_at": "2013-03-26T15:42:36-04:00",
+                    "updated_at": "2013-03-26T15:42:36-04:00"
+                }
+            },
+            {
+                "action": "PUT",
+                "uri": "/users/207119551.json",
+                "description": ["Modify an existing user."],
+                "params": {
+                    "id": {
+                        "type": "integer",
+                        "description": "ID of the user's profile",
+                        "required": true
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "description": "The name of the user",
+                        "required": false
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "description": "The user's last name",
+                        "required": false
+                    },
+                    "note": {
+                        "type": "string",
+                        "description": "Additional note for user",
+                        "required": false
+                    }
+                },
+                "response": {
+                    "id": 207119551,
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "email": "jdoe@gmail.com",
+                    "state": "active",
+                    "note": "Note has been updated",
+                    "created_at": "2013-03-26T15:42:36-04:00",
+                    "updated_at": "2013-03-26T15:50:36-04:00"
+                }
+            },
+            {
+                "action": "DELETE",
+                "uri": "/users/207119551.json",
+                "description": ["Remove a user from the database."],
+                "params": {
+                    "id": {
+                        "type": "integer",
+                        "description": "ID of the user's profile",
+                        "required": true
+                    }
+                },
+                "response": {
+                    "id": 207119551
+                }
+            }
+        ],
+        "article": [
+            {
+                "action": "GET",
+                "uri": "/blogs/241253187/articles.json",
+                "description": ["Receive a list of all articles for given blog."],
+                "params": {
+                    "id": {
+                        "type": "integer",
+                        "description": "A unique numeric identifier for the blog containing the article",
+                        "required": true
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Page to show",
+                        "required": true
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Amount of results (max: 50)",
+                        "required": true
+                    }
+                },
+                "response": {
+                    "data": [
+                        {
+                            "id": 989034056,
+                            "blog_id": 241253187,
+                            "author": "John",
+                            "title": "Some crazy article I'm coming up with",
+                            "body": "I have no idea what to write about, but it's going to rock!",
+                            "tags": "Mystery",
+                            "published_at": null
+                        },
+                        {
+                            "id": 134645308,
+                            "blog_id": 241253187,
+                            "author": "Dennis",
+                            "title": "Get on the train now",
+                            "body": "Do you have an IPod yet?",
+                            "tags": "Announcing, Notes",
+                            "published_at": "2008-07-31T20:00:00-04:00"
+                        }
+                    ],
+                    "total": 310
+                }
+            },
+            {
+                "action": "GET",
+                "uri": "/blogs/241253187/articles/count.json",
+                "description": ["Get a count of all articles from a certain blog."],
+                "params": {
+                    "id": {
+                        "type": "integer",
+                        "description": "A unique numeric identifier for the blog containing the article",
+                        "required": true
+                    }
+                },
+                "response": {
+                    "total": 310
+                }
+            }
+        ]
+    }
+}

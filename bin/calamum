@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+#
+# Calamum is a simple REST API documentation generator.
+# This is a fork, that allows you to work with JSON format.
+$: << File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'rubygems'
+require 'calamum/runner'
+
+Calamum::Runner.new.run

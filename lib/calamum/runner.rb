@@ -1,0 +1,99 @@
+require 'calamum'
+require 'calamum/config'
+require 'calamum/doc_generator'
+require 'mixlib/cli'
+
+# Provides a class-based command line opts.
+# See https://github.com/opscode/mixlib-cli
+class Calamum::Runner
+  include Mixlib::CLI
+
+  option :help,
+    :short        => '-h',
+    :long         => '--help',
+    :description  => 'Show this help',
+    :on           => :tail,
+    :boolean      => true,
+    :show_options => true,
+    :exit         => 0
+
+  option :source,
+    :short        => '-f DEFINITION',
+    :long         => '--file DEFINITION',
+    :description  => 'Path to the file with JSON API definition',
+    :required     => true
+
+  option :template,
+    :short        => '-t TEMPLATE',
+    :long         => '--template TEMPLATE',
+    :description  => 'Name of HTML template (twitter by default)',
+    :default      => 'twitter'
+
+  option :path,
+    :short        => '-p PATH',
+    :long         => '--path PATH',
+    :description  => 'Path to the directory where docs will be generated',
+    :default      => ENV['HOME']
+
+  option :debug,
+    :short        => '-d',
+    :long         => '--debug',
+    :description  => 'Show actions to do (true by default)',
+    :default      => true,
+    :boolean      => true,
+    :proc         => lambda { |x| true }
+
+  option :version,
+    :short        => '-v',
+    :long         => '--version',
+    :description  => 'Show version number',
+    :proc         => lambda { |x| puts Calamum::VERSION },
+    :exit         => 0
+
+  # Parses command line options and generates API documentation.
+  # See samples for details how to define meta-data for your API.
+  def run
+    parse_options
+    Calamum::Config.apply(config)
+    api_definition = Yajl.load(File.open(config[:source]))
+    @definition = Calamum::DocParser.new(api_definition)
+
+    @definition.load_resources
+    Calamum::DocGenerator.init_base_dir
+    process_index && process_pages
+  rescue => ex
+    puts_error ex.message
+  end
+
+  # Bind values to index page and save it.
+  def process_index
+    bindings = {
+      :url => @definition.get_url,
+      :name => @definition.get_name,
+      :resources => @definition.resources,
+      :version => Time.now.strftime("%y%m%d")
+    }
+
+    page = Calamum::DocGenerator.new(:index)
+    page.save_template('index.html', bindings)
+  end
+
+  # Bind values to view pages and save them.
+  def process_pages
+    bindings = {
+      :name => @definition.get_name,
+      :version => Time.now.strftime("%y%m%d")
+    }
+
+    page = Calamum::DocGenerator.new(:view)
+    @definition.resources.each do |methods|
+      methods[1].each do |resource|
+        bindings.merge!(:resource => resource)
+        filename = "#{resource.object_id}.html"
+
+        page.save_template(filename, bindings)
+      end
+    end
+  end
+
+end
