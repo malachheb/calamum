@@ -20,10 +20,10 @@ Usage: /bin/calamum (options)
 
 To generate a documentation you should write a definition of your REST API in JSON format.
 <br/>
-You could find an example of API definition in the sample.json. Next, just run the calamum command.
+You could find an example of API definition in the [sample.json](/sample/sample.json). Next, just run the calamum command.
 
     $calamum -f my_api_definition.json
-To preview just generated documentation, navigate to the 'docs' directory (by default in your home path, but you can specify the destination path with the option '-p/--path').
+To preview just generated documentation, navigate to the 'docs' directory (by default in your home path, you can specify the destination path with the option '-p/--path').
 Then, find and open the index.html file in your browser and enjoy the result.
 
 ## Inspirations
