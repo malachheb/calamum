@@ -68,7 +68,7 @@ class Calamum::Runner
     @definition.load_resources
     Calamum::DocGenerator.init_base_dir
     process_index 
-    # && process_pages
+    process_pages if config[:template] == 'twitter'
   rescue => ex
     puts_error ex.message
   end
