@@ -16,7 +16,7 @@
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <header class="jumbotron subhead" id="overview">
 <div class="container">
-  <h1><%= @name %> Rest API Doc</h1>
+  <h1><%= @name %></h1>
   <p class="lead"><%= @url %></p>
 </div>
 </header>
@@ -77,8 +77,8 @@
 	   <table class="table table-bordered table-hover">
 	     <thead>
 	       <tr>
-		 <th>Key</th>
-		 <th>Value</th>
+		 	<th>Key</th>
+		 	<th>Value</th>
 	       </tr>
 	     </thead>
 	     <tbody>
@@ -120,7 +120,9 @@
 	      Request without parametres
 	   <% end %>
 	 </div>
-	 <div class="tab-pane" id="response_<%= req.object_id %>"><code><%= req.response %></code></div>
+	 <div class="tab-pane" id="response_<%= req.object_id %>">
+		 <pre class="prettyprint"><%= pj req.response %></pre>
+	 </div>
         </div>
        </div>
      </div>

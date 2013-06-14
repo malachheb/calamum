@@ -1,4 +1,4 @@
-name: 'Calamum'
+name: 'Calamum Rest Api'
 url: 'http://calamum-sample:3000/api'
 version: '1.0'
 description: 'Calamum is a simple ruby build program to generate a REST API documentation from a YAML file definition'

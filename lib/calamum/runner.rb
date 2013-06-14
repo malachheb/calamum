@@ -57,23 +57,14 @@ class Calamum::Runner
     :boolean      => true,
     :default      => false
     
-  option :sort,
-    :short        => "-s",
-    :long         => "--sort",
-    :description  => "Sort the resources alphabetically",
-    :boolean      => true,
-    :default      => false
-    
-
   # Parses command line options and generates API documentation.
   # See samples for details how to define meta-data for your API.
   def run
     parse_options
     Calamum::Config.apply(config)
-    #api_definition = Yajl.load(File.open(config[:source]))
-    
-    api_definition = YAML.load(File.open(config[:source]))
-    @definition = Calamum::DocParser.new(api_definition)
+    #api_definition = Yajl.load(File.open(config[:source])) 
+    # api_definition
+    @definition = Calamum::DocParser.new(load_source)
     @definition.load_resources
     Calamum::DocGenerator.init_base_dir
     process_index 
@@ -82,6 +73,18 @@ class Calamum::Runner
     puts_error ex.message
   end
 
+  # Open and load the source file of api definition
+  def load_source
+    case File.extname(config[:source])
+    when '.json'
+      Yajl.load(File.open(config[:source]))
+    when '.yml'
+      YAML.load(File.open(config[:source]))
+    else
+      raise 'unknown source file extension'
+    end
+  end
+  
   # Bind values to index page and save it.
   def process_index
     bindings = {
@@ -100,7 +103,7 @@ class Calamum::Runner
   def process_pages
     bindings = {
       :name => @definition.get_name,
-      :version => Time.now.strftime("%y%m%d")
+      :version => @definition.get_version
     }
 
     page = Calamum::DocGenerator.new(:view)
