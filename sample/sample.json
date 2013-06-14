@@ -1,14 +1,14 @@
 {
     "name": "Sample REST API",
     "url": "http://api.sample.com",
-	"version": "1.0"
-	"description": "Calamum is a simple ruby build program to generate a REST API documentation from a YAML file definition"
+	"version": "1.0",
+	"description": "Calamum is a simple ruby build program to generate a REST API documentation from a YAML file definition",
     "resources": {
         "user": [
             {
                 "action": "GET",
                 "uri": "/users.json",
-                "description": ["Retrieve all the registered users."],
+                "description": "Retrieve all <br> the registered users.",
                 "params": {
                     "page": {
                         "type": "integer",
@@ -55,7 +55,7 @@
             {
                 "action": "GET",
                 "uri": "/users/207119551.json",
-                "description": ["Receive a single user."],
+                "description": "Receive a single user.",
                 "params": {
                     "id": {
                         "type": "integer",
@@ -77,7 +77,7 @@
             {
                 "action": "POST",
                 "uri": "/users.json",
-                "description": ["Create a new user."],
+                "description": "Create a new user.",
                 "params": {
                     "email": {
                         "type": "string",
@@ -114,7 +114,7 @@
             {
                 "action": "PUT",
                 "uri": "/users/207119551.json",
-                "description": ["Modify an existing user."],
+                "description": "Modify an existing user.",
                 "params": {
                     "id": {
                         "type": "integer",
@@ -151,7 +151,7 @@
             {
                 "action": "DELETE",
                 "uri": "/users/207119551.json",
-                "description": ["Remove a user from the database."],
+                "description": "Remove a user from the database.",
                 "params": {
                     "id": {
                         "type": "integer",
@@ -168,7 +168,7 @@
             {
                 "action": "GET",
                 "uri": "/blogs/241253187/articles.json",
-                "description": ["Receive a list of all articles for given blog."],
+                "description": "Receive a list of all articles for given blog.",
                 "params": {
                     "id": {
                         "type": "integer",
@@ -213,7 +213,7 @@
             {
                 "action": "GET",
                 "uri": "/blogs/241253187/articles/count.json",
-                "description": ["Get a count of all articles from a certain blog."],
+                "description": "Get a count of all articles from a certain blog.",
                 "params": {
                     "id": {
                         "type": "integer",
