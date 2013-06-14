@@ -18,3 +18,18 @@
     border: 1px solid black;
     border-color: #e8c6c7;
 }
+
+pre.prettyprint  {
+    padding: 0px;
+     background-color: #fafafb;
+     border: none !important;
+}
+ pre .str  {
+    color: #36C;
+}
+ pre .lit  {
+    color: #c00;
+}
+ pre .pun  {
+    color: #999;
+}

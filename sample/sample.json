@@ -7,7 +7,7 @@
         "user": [
             {
                 "action": "GET",
-                "uri": "/users.json",
+                "uri": "/users",
                 "description": "Retrieve all <br> the registered users.",
                 "params": {
                     "page": {
@@ -54,7 +54,7 @@
             },
             {
                 "action": "GET",
-                "uri": "/users/207119551.json",
+                "uri": "/users/:id",
                 "description": "Receive a single user.",
                 "params": {
                     "id": {
@@ -76,7 +76,7 @@
             },
             {
                 "action": "POST",
-                "uri": "/users.json",
+                "uri": "/users",
                 "description": "Create a new user.",
                 "params": {
                     "email": {
@@ -113,7 +113,7 @@
             },
             {
                 "action": "PUT",
-                "uri": "/users/207119551.json",
+                "uri": "/users/:id",
                 "description": "Modify an existing user.",
                 "params": {
                     "id": {
@@ -150,7 +150,7 @@
             },
             {
                 "action": "DELETE",
-                "uri": "/users/207119551.json",
+                "uri": "/users/:id",
                 "description": "Remove a user from the database.",
                 "params": {
                     "id": {
@@ -167,7 +167,7 @@
         "article": [
             {
                 "action": "GET",
-                "uri": "/blogs/241253187/articles.json",
+                "uri": "/blogs/:id/articles",
                 "description": "Receive a list of all articles for given blog.",
                 "params": {
                     "id": {
@@ -212,7 +212,7 @@
             },
             {
                 "action": "GET",
-                "uri": "/blogs/241253187/articles/count.json",
+                "uri": "/blogs/:id/articles/count",
                 "description": "Get a count of all articles from a certain blog.",
                 "params": {
                     "id": {
