@@ -13,9 +13,17 @@ class Calamum::DocParser
   def get_name
     @definition['name']
   end
+  
+  def get_version
+    @definition['version']
+  end
+  
+  def get_description
+    @definition['description']
+  end
 
   def get_resources
-    @definition['resources']
+    Calamum::Config[:sort]? @definition['resources'].sort : @definition['resources']
   end
 
   def load_resources
@@ -26,18 +34,16 @@ class Calamum::DocParser
           list << Calamum::Resource.new(resource)
           puts_info "#{resource['action']}: #{resource['uri']}"
         else
-          puts_warning "Resource #{name} has incorrect definition"
+          puts_warning "Resource #{resource['action']}: #{resource['uri']} has incorrect definition"
         end
       end
-
       @resources[name] = list if list.any?
     end
-
     @resources
   end
 
   def validate_resource?(resource)
-    resource['uri'] && resource['action'] && resource['description']
+    resource['uri'] && resource['action'] && resource['description'] && %{GET POST PUT DELETE}.include?(resource['action'].upcase)
   end
 
 end

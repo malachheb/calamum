@@ -1,0 +1,20 @@
+.getHeader{
+    background-color: #e7f0f7;
+    border: 1px solid black;
+    border-color: #c3d9ec;
+}
+.postHeader{
+    background-color: #e7f6ec;
+    border: 1px solid black;
+    border-color: #c3e8d1;
+}
+.putHeader{
+    background-color: #f9f2e9;
+    border: 1px solid black;
+    border-color: #f0e0ca;
+}
+.deleteHeader{
+    background-color: #f5e8e8;
+    border: 1px solid black;
+    border-color: #e8c6c7;
+}

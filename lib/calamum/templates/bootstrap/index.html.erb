@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link href="./assets/stylesheets/bootstrap.css" rel="Stylesheet"/>
+<link href="./assets/stylesheets/bootstrap-responsive.css" rel="Stylesheet"/>
+<link href="./assets/stylesheets/docs.css" rel="Stylesheet"/>
+<link href="./assets/stylesheets/main.css" rel="Stylesheet"/>
+<script type="text/javascript" src="./assets/javascripts/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="./assets/javascripts/bootstrap.js"></script>
+<title><%= @name %> Rest API Doc</title>
+</head>
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<header class="jumbotron subhead" id="overview">
+<div class="container">
+  <h1><%= @name %> Rest API Doc</h1>
+  <p class="lead"><%= @url %></p>
+</div>
+</header>
+<div class="container">
+<div class="row">
+<div class="span3 bs-docs-sidebar">
+  <ul class="nav nav-list bs-docs-sidenav affix-top">
+    <% if @description %>
+    <li class="active">
+    <a href="#overview">
+    <i class="icon-chevron-right"></i>Overview</a>
+    </li>
+    <% end %>
+    <% @resources.keys.each_with_index do |key,index| %>
+    <li class="<%= !@description && (index == 0) ? 'active': '' %>">
+    <a href="#<%= key %>_section">
+    <i class="icon-chevron-right"></i><%= key %></a>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<div class="span9">
+  <% if @description %>
+  <section id="overview">
+    <div class="page-header">
+      <h2>Overview</h2>
+    </div>
+    <div id="overview-body">
+    <%= @description %>
+    </div>
+  </section>
+  <% end %>
+  <% @resources.each do |name, requests| %>
+  <section id="<%= name %>_section">
+    <div class="page-header">
+      <h2><%= name.capitalize %> resource</h2>
+    </div>
+    <div class="accordion" id="accordion2">
+    <% requests.each do |req| %>
+    <div class="accordion-group">
+      <div class="accordion-heading <%= req.action.downcase %>Header">
+	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<%= req.object_id %>">
+          <span><span class="label <%= req.action_label %>"><%= req.action %></span><h4 style="display:inline;"><%= "  #{req.uri}" %></h4></span>
+        </a>
+      </div>
+      <div id="<%= req.object_id %>" class="accordion-body collapse">
+      <div class="accordion-inner">
+	<ul class="nav nav-tabs">
+	  <li class="active"><a href="#description_<%= req.object_id %>"  data-toggle="tab">Description</a></li>
+	  <li><a href="#header_<%= req.object_id %>" data-toggle="tab">Header</a></li>
+	  <li><a href="#params_<%= req.object_id %>" data-toggle="tab">Parameters</a></li>
+	  <li><a href="#response_<%= req.object_id %>" data-toggle="tab">Response</a></li>
+	</ul>
+        <div class="tab-content">
+	 <div class="tab-pane active" id="description_<%= req.object_id %>"><%= req.description %></div>
+	 <div class="tab-pane" id="header_<%= req.object_id %>">
+	   <% unless req.params.empty? %>
+	   <table class="table table-bordered table-hover">
+	     <thead>
+	       <tr>
+		 <th>Key</th>
+		 <th>Value</th>
+	       </tr>
+	     </thead>
+	     <tbody>
+	       <% req.headers.each do |key, content| %>
+	       <tr>
+		 <td><%= key %></td>
+		 <td><%= content %></td>
+	       </tr>
+	       <% end %>
+	     </tbody>
+	   </table>
+	   <% else %>
+	      Request without headers
+	   <% end %>
+	 </div>
+	 <div class="tab-pane" id="params_<%= req.object_id %>">
+	   <% unless req.params.empty? %>
+	   <table class="table table-bordered table-hover">
+	     <thead>
+	       <tr>
+		 <th>Label</th>
+		 <th>Description</th>
+		 <th>Type</th>
+		 <th>Required</th>
+	       </tr>
+	     </thead>
+	     <tbody>
+	       <% req.params.each do |key, content| %>
+	       <tr>
+		 <td><%= key %></td>
+		 <td><%= content['description'] %></td>
+		 <td><%= content['type'] %></td>
+		 <td><%= content['required'] %></td>
+	       </tr>
+	       <% end %>
+	     </tbody>
+	   </table>
+	   <% else %>
+	      Request without parametres
+	   <% end %>
+	 </div>
+	 <div class="tab-pane" id="response_<%= req.object_id %>"><code><%= req.response %></code></div>
+        </div>
+       </div>
+     </div>
+    </div>
+    <% end %>
+   </div>
+ </section>
+<% end %>
+</div>
+</div>
+</div>
+</body>
+</html>

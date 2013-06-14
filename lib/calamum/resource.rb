@@ -18,6 +18,23 @@ class Calamum::Resource
     @description = attrs['description']
     @response = attrs['response']
   end
+  
+  # @override
+  # Returns a string representing a label css class.
+  #
+  # @return [String] css class
+  def action_label
+    case @action
+    when 'GET'
+      'label-info'
+    when 'POST'
+      'label-success'
+    when 'PUT'
+      'label-warning'
+    when 'DELETE'
+      'label-important'
+    end
+  end
 
   # @override
   # Returns a string representing a resource.
