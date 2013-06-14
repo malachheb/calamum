@@ -26,7 +26,7 @@ class Calamum::Runner
   option :template,
     :short        => '-t TEMPLATE',
     :long         => '--template TEMPLATE',
-    :description  => 'Name of HTML template (twitter by default)',
+    :description  => 'Name of HTML template [twitter, bootstrap](twitter by default)',
     :default      => 'twitter'
 
   option :path,
@@ -49,18 +49,35 @@ class Calamum::Runner
     :description  => 'Show version number',
     :proc         => lambda { |x| puts Calamum::VERSION },
     :exit         => 0
+    
+  option :sort,
+    :short        => "-s",
+    :long         => "--sort",
+    :description  => "Sort the resources alphabetically",
+    :boolean      => true,
+    :default      => false
+    
+  option :sort,
+    :short        => "-s",
+    :long         => "--sort",
+    :description  => "Sort the resources alphabetically",
+    :boolean      => true,
+    :default      => false
+    
 
   # Parses command line options and generates API documentation.
   # See samples for details how to define meta-data for your API.
   def run
     parse_options
     Calamum::Config.apply(config)
-    api_definition = Yajl.load(File.open(config[:source]))
+    #api_definition = Yajl.load(File.open(config[:source]))
+    
+    api_definition = YAML.load(File.open(config[:source]))
     @definition = Calamum::DocParser.new(api_definition)
-
     @definition.load_resources
     Calamum::DocGenerator.init_base_dir
-    process_index && process_pages
+    process_index 
+    # && process_pages
   rescue => ex
     puts_error ex.message
   end
@@ -71,7 +88,8 @@ class Calamum::Runner
       :url => @definition.get_url,
       :name => @definition.get_name,
       :resources => @definition.resources,
-      :version => Time.now.strftime("%y%m%d")
+      :description => @definition.get_description,
+      :version => @definition.get_version
     }
 
     page = Calamum::DocGenerator.new(:index)
@@ -90,7 +108,6 @@ class Calamum::Runner
       methods[1].each do |resource|
         bindings.merge!(:resource => resource)
         filename = "#{resource.object_id}.html"
-
         page.save_template(filename, bindings)
       end
     end
