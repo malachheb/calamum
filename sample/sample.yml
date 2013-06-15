@@ -11,7 +11,7 @@ resources:
       headers:
         content_type: 'application/json'
       description: 'Get the users list'
-      response: '{"users":[{"id":"12354","name":"test", "mail":"test@test.com"}, {"id":"123789","name":"test2", "mail":"test@test.com"}}'
+      response: {"users":[{"id":"12354","name":"test", "mail":"test@test.com"}, {"id":"123789","name":"test2", "mail":"test@test.com"}]}
      -
       uri: '/users/:id'
       action: 'get'
@@ -25,7 +25,7 @@ resources:
           description: 'User id'
           required: true
       description: 'get the user'
-      response: '{"user":{"name":"test", "mail":"test@test.com"}}'
+      response: {"user": {"name": "test", "mail": "test@test.com"}}
 
      -
       uri: '/users'
@@ -84,5 +84,6 @@ resources:
      -
       uri: '/groups'
       action: 'get'
-      content_type: 'application/json'
+      headers:
+        content_type: 'application/json'
       description: 'Get the list of groups'
