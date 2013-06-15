@@ -62,8 +62,6 @@ class Calamum::Runner
   def run
     parse_options
     Calamum::Config.apply(config)
-    #api_definition = Yajl.load(File.open(config[:source])) 
-    # api_definition
     @definition = Calamum::DocParser.new(load_source)
     @definition.load_resources
     Calamum::DocGenerator.init_base_dir

@@ -11,4 +11,5 @@ module Calamum
   require 'calamum/doc_parser'
   require 'calamum/doc_generator'
   require 'calamum/version'
+  VALID_TEMPLATES = %{twitter bootstrap}
 end

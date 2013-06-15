@@ -120,9 +120,11 @@
 	      Request without parametres
 	   <% end %>
 	 </div>
-	 <div class="tab-pane content" id="response_<%= req.object_id %>">
-		 <pre class="prettyprint"><%= pj req.response %></pre>
-	 </div>
+	   <div class="tab-pane content" id="response_<%= req.object_id %>">
+		<% if req.response %>
+	  	 <pre class="prettyprint"><%= pj req.response %></pre>
+		 <% end%>
+	   </div>
         </div>
        </div>
      </div>

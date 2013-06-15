@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.version       = Calamum::VERSION
   gem.authors       = ['Alex Y.', 'Mehrez Alachheb']
   gem.summary       = 'REST API documentation generator'
-
+  gem.homepage      = "https://github.com/malachheb/calamum"
   gem.files         = Dir['lib/**/*.*']
   gem.bindir        = 'bin'
   gem.executables   = 'calamum'
