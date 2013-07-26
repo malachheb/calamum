@@ -73,7 +73,7 @@
         <div class="tab-content">
 	 <div class="tab-pane active" id="description_<%= req.object_id %>"><%= req.description %></div>
 	 <div class="tab-pane" id="header_<%= req.object_id %>">
-	   <% unless req.params.empty? %>
+	   <% unless req.headers.empty? %>
 	   <table class="table table-bordered table-hover">
 	     <thead>
 	       <tr>
