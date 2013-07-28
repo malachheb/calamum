@@ -17,6 +17,7 @@ class Calamum::Resource
     @errors = attrs['errors'] || {}
     @description = attrs['description']
     @response = attrs['response']
+    @tryit = attrs['tryit']
   end
   
   # @override
