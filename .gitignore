@@ -16,3 +16,6 @@ tmtags
 ## PROJECT::GENERAL
 tmp
 pkg
+*.iml
+*.ipr
+*.iws
