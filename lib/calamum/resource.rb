@@ -19,7 +19,13 @@ class Calamum::Resource
     @response = attrs['response']
     @tryit = attrs['tryit']
   end
-  
+
+  def slug
+    sanitized_uri = uri.gsub(/[^\w]/, '_').gsub('__', '_')
+
+    "#{sanitized_uri}_#{action.downcase}_#{self.object_id}"
+  end
+
   # @override
   # Returns a string representing a label css class.
   #
