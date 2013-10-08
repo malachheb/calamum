@@ -19,7 +19,15 @@ class Calamum::Resource
     @response = attrs['response']
     @tryit = attrs['tryit']
   end
-  
+
+  # Returns a unique, but readable name for this resource suitable for use as a filename
+  #
+  # @return [String] resource filename
+  def slug
+    sanitized_uri = uri.gsub(/[^\w]/, '_').gsub('__', '_')
+    "#{sanitized_uri}_#{action.downcase}_#{self.object_id}"
+  end
+
   # @override
   # Returns a string representing a label css class.
   #
