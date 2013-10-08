@@ -58,21 +58,21 @@
     <% requests.each do |req| %>
     <div class="accordion-group">
       <div class="accordion-heading <%= req.action.downcase %>Header">
-	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<%= req.object_id %>">
+	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<%= req.slug %>">
           <span><span class="label <%= req.action_label %>"><%= req.action %></span><h4 style="display:inline;"><%= "  #{req.uri}" %></h4></span>
         </a>
       </div>
-      <div id="<%= req.object_id %>" class="accordion-body collapse">
+      <div id="<%= req.slug %>" class="accordion-body collapse">
       <div class="accordion-inner">
 	<ul class="nav nav-tabs">
-	  <li class="active"><a href="#description_<%= req.object_id %>"  data-toggle="tab">Description</a></li>
-	  <li><a href="#header_<%= req.object_id %>" data-toggle="tab">Header</a></li>
-	  <li><a href="#params_<%= req.object_id %>" data-toggle="tab">Parameters</a></li>
-	  <li><a href="#response_<%= req.object_id %>" data-toggle="tab">Response</a></li>
+	  <li class="active"><a href="#description_<%= req.slug %>"  data-toggle="tab">Description</a></li>
+	  <li><a href="#header_<%= req.slug %>" data-toggle="tab">Header</a></li>
+	  <li><a href="#params_<%= req.slug %>" data-toggle="tab">Parameters</a></li>
+	  <li><a href="#response_<%= req.slug %>" data-toggle="tab">Response</a></li>
 	</ul>
         <div class="tab-content">
-	 <div class="tab-pane active" id="description_<%= req.object_id %>"><%= req.description %></div>
-	 <div class="tab-pane" id="header_<%= req.object_id %>">
+	 <div class="tab-pane active" id="description_<%= req.slug %>"><%= req.description %></div>
+	 <div class="tab-pane" id="header_<%= req.slug %>">
 	   <% unless req.headers.empty? %>
 	   <table class="table table-bordered table-hover">
 	     <thead>
@@ -94,7 +94,7 @@
 	      Request without headers
 	   <% end %>
 	 </div>
-	 <div class="tab-pane" id="params_<%= req.object_id %>">
+	 <div class="tab-pane" id="params_<%= req.slug %>">
 	   <% unless req.params.empty? %>
 	   <table class="table table-bordered table-hover">
 	     <thead>
@@ -120,7 +120,7 @@
 	      Request without parametres
 	   <% end %>
 	 </div>
-	   <div class="tab-pane content" id="response_<%= req.object_id %>">
+	   <div class="tab-pane content" id="response_<%= req.slug %>">
 		<% if req.response %>
 	  	 <pre class="prettyprint"><%= pj req.response %></pre>
 		 <% end%>

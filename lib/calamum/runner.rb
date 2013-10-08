@@ -49,14 +49,14 @@ class Calamum::Runner
     :description  => 'Show version number',
     :proc         => lambda { |x| puts Calamum::VERSION },
     :exit         => 0
-    
+
   option :sort,
     :short        => "-s",
     :long         => "--sort",
     :description  => "Sort the resources alphabetically",
     :boolean      => true,
     :default      => false
-    
+
   # Parses command line options and generates API documentation.
   # See samples for details how to define meta-data for your API.
   def run
@@ -65,7 +65,7 @@ class Calamum::Runner
     @definition = Calamum::DocParser.new(load_source)
     @definition.load_resources
     Calamum::DocGenerator.init_base_dir
-    process_index 
+    process_index
     process_pages if config[:template] == 'twitter'
   rescue => ex
     puts_error ex.message
@@ -82,7 +82,7 @@ class Calamum::Runner
       raise 'unknown source file extension'
     end
   end
-  
+
   # Bind values to index page and save it.
   def process_index
     bindings = {
@@ -108,7 +108,7 @@ class Calamum::Runner
     @definition.resources.each do |methods|
       methods[1].each do |resource|
         bindings.merge!(:resource => resource)
-        filename = "#{resource.object_id}.html"
+        filename = "#{resource.slug}.html"
         page.save_template(filename, bindings)
       end
     end

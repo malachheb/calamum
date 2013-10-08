@@ -41,7 +41,7 @@
                 <% endpoints.each do |resource| %>
                   <tr>
                     <td class="views-field-title">
-                      <a href="<%= resource.object_id %>.html"><%= resource.action %> <%= resource.uri %></a>
+                      <a href="<%= resource.slug %>.html"><%= resource.action %> <%= resource.uri %></a>
                     </td>
                     <td class="views-field-body">
                       <%= resource.description %>
