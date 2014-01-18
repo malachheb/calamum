@@ -55,6 +55,14 @@
               </div>
             </div>
           <% end %>
+          <% if @resource.request %>
+            <div class="group-example-request">
+              <h2>Example Request</h2>
+              <div class="content">
+                <pre class="prettyprint"><%= pj @resource.request %></pre>
+              </div>
+            </div>
+          <% end %>
         </div>
 
         <div id="sidebar-last">
