@@ -3,7 +3,7 @@ class Calamum::Request
 
   attr_reader :errors
   attr_accessor :uri, :action, :params, :description, :headers, :response
-  ACTIONS= %{GET POST PUT DELETE}
+  ACTIONS= %w{GET POST PUT DELETE}
 
   validates :uri, :action, :presence => true
   # validates :uri, :uniqueness => true
