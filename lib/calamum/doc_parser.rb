@@ -13,17 +13,24 @@ class Calamum::DocParser
   def get_name
     @definition['name']
   end
-  
+
   def get_version
     @definition['version']
   end
-  
+
   def get_description
     @definition['description']
   end
 
   def get_resources
-    Calamum::Config[:sort]? @definition['resources'].sort : @definition['resources']
+    resources = @definition['resources'].kind_of?(String) ? get_seperate_resources : @definition['resources']
+    Calamum::Config[:sort]? resources.sort : resources
+  end
+
+  def get_seperate_resources
+    extension = File.extname(Calamum::Config[:source])
+    path = File.expand_path("#{@definition['resources']}", File.dirname(Calamum::Config[:source]))
+    Dir["#{path}/*#{extension}"].map { |f| Yajl.load File.read(f) }.flatten.reduce({}, :merge)
   end
 
   def load_resources

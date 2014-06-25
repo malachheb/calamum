@@ -2,6 +2,7 @@ require 'erb'
 require 'yajl'
 require 'yaml'
 require 'fileutils'
+require 'pry'
 
 module Calamum
   require 'calamum/config'

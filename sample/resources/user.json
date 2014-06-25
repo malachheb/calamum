@@ -1,0 +1,162 @@
+{
+"user": [
+    {
+        "action": "GET",
+        "uri": "/users",
+        "description": "Retrieve all <br> the registered users.",
+        "params": {
+            "page": {
+                "type": "integer",
+                "description": "Page to show",
+                "required": true
+            },
+            "limit": {
+                "type": "integer",
+                "description": "Amount of results (max: 100)",
+                "required": true
+            },
+            "query": {
+                "type": "string",
+                "description": "Text to search users",
+                "required": false
+            }
+        },
+        "response": {
+            "data": [
+                {
+                    "id": 207119551,
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "email": "jdoe@gmail.com",
+                    "state": "active",
+                    "note": null,
+                    "created_at": "2013-03-26T15:42:36-04:00",
+                    "updated_at": "2013-03-26T15:42:36-04:00"
+                },
+                {
+                    "id": 209871202,
+                    "first_name": "Bob",
+                    "last_name": "Norman",
+                    "email": "bob.norman@hotmail.com",
+                    "state": "active",
+                    "note": "See my profile at http://58745954.io",
+                    "created_at": "2013-03-30T19:21:00-04:00",
+                    "updated_at": "2013-03-30T19:21:00-04:00"
+                }
+            ],
+            "total": 1050
+        }
+    },
+    {
+        "action": "GET",
+        "uri": "/users/:id",
+        "description": "Receive a single user.",
+        "params": {
+            "id": {
+                "type": "integer",
+                "description": "ID of the user's profile",
+                "required": true
+            }
+        },
+        "response": {
+            "id": 207119551,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "jdoe@gmail.com",
+            "state": "active",
+            "note": null,
+            "created_at": "2013-03-26T15:42:36-04:00",
+            "updated_at": "2013-03-26T15:42:36-04:00"
+        }
+    },
+    {
+        "action": "POST",
+        "uri": "/users",
+        "description": "Create a new user.",
+        "params": {
+            "email": {
+                "type": "string",
+                "description": "The primary e-mail of user",
+                "required": true
+            },
+            "first_name": {
+                "type": "string",
+                "description": "The name of the user",
+                "required": true
+            },
+            "last_name": {
+                "type": "string",
+                "description": "The user's last name",
+                "required": true
+            },
+            "note": {
+                "type": "string",
+                "description": "Additional note for user",
+                "required": false
+            }
+        },
+        "response": {
+            "id": 207119551,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "jdoe@gmail.com",
+            "state": "active",
+            "note": null,
+            "created_at": "2013-03-26T15:42:36-04:00",
+            "updated_at": "2013-03-26T15:42:36-04:00"
+        }
+    },
+    {
+        "action": "PUT",
+        "uri": "/users/:id",
+        "description": "Modify an existing user.",
+        "params": {
+            "id": {
+                "type": "integer",
+                "description": "ID of the user's profile",
+                "required": true
+            },
+            "first_name": {
+                "type": "string",
+                "description": "The name of the user",
+                "required": false
+            },
+            "last_name": {
+                "type": "string",
+                "description": "The user's last name",
+                "required": false
+            },
+            "note": {
+                "type": "string",
+                "description": "Additional note for user",
+                "required": false
+            }
+        },
+        "response": {
+            "id": 207119551,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "jdoe@gmail.com",
+            "state": "active",
+            "note": "Note has been updated",
+            "created_at": "2013-03-26T15:42:36-04:00",
+            "updated_at": "2013-03-26T15:50:36-04:00"
+        }
+    },
+    {
+        "action": "DELETE",
+        "uri": "/users/:id",
+        "description": "Remove a user from the database.",
+        "params": {
+            "id": {
+                "type": "integer",
+                "description": "ID of the user's profile",
+                "required": true
+            }
+        },
+        "response": {
+            "id": 207119551
+        }
+    }
+]
+}

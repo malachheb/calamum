@@ -1,0 +1,63 @@
+{"article": [
+    {
+        "action": "GET",
+        "uri": "/blogs/:id/articles",
+        "description": "Receive a list of all articles for given blog.",
+        "params": {
+            "id": {
+                "type": "integer",
+                "description": "A unique numeric identifier for the blog containing the article",
+                "required": true
+            },
+            "page": {
+                "type": "integer",
+                "description": "Page to show",
+                "required": true
+            },
+            "limit": {
+                "type": "integer",
+                "description": "Amount of results (max: 50)",
+                "required": true
+            }
+        },
+        "response": {
+            "data": [
+                {
+                    "id": 989034056,
+                    "blog_id": 241253187,
+                    "author": "John",
+                    "title": "Some crazy article I'm coming up with",
+                    "body": "I have no idea what to write about, but it's going to rock!",
+                    "tags": "Mystery",
+                    "published_at": null
+                },
+                {
+                    "id": 134645308,
+                    "blog_id": 241253187,
+                    "author": "Dennis",
+                    "title": "Get on the train now",
+                    "body": "Do you have an IPod yet?",
+                    "tags": "Announcing, Notes",
+                    "published_at": "2008-07-31T20:00:00-04:00"
+                }
+            ],
+            "total": 310
+        }
+    },
+    {
+        "action": "GET",
+        "uri": "/blogs/:id/articles/count",
+        "description": "Get a count of all articles from a certain blog.",
+        "params": {
+            "id": {
+                "type": "integer",
+                "description": "A unique numeric identifier for the blog containing the article",
+                "required": true
+            }
+        },
+        "response": {
+            "total": 310
+        }
+    }
+]
+}

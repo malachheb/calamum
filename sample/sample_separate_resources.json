@@ -1,0 +1,7 @@
+{
+    "name": "Sample REST API",
+    "url": "http://api.sample.com",
+    "version": "1.0",
+    "description": "Calamum is a simple ruby build program to generate a REST API documentation from a YAML file definition",
+    "resources": "./resources"
+}
