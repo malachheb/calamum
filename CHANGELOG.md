@@ -1,7 +1,7 @@
 Next Release
 ------------
 
-Next Release
+1.2.0(26/06/2014)
 -----------------
 * Add CHANGELOG file - [@malachheb](https://github.com/malachheb).
 * Add handle the resources in separated files - [@malachheb](https://github.com/malachheb).
