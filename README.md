@@ -21,7 +21,7 @@ Usage: /bin/calamum (options)
 
 To generate a documentation you should write a definition of your REST API in JSON format or YAML format.
 <br>
-In the case of separated resources files, the `resources` attribute must define the directory path of resources files as in the file [sample_separate_resources.json](/sample/sample_separate_resources.json).
+In the case of separated resources files, the `resources` attribute must define the directory path of resources files as in the files [sample_separated.json](spec/fixtures/sample_separated.json) and [sample_separated.yml](spec/fixtures/sample_separated.yml).
 <br/>
 You could find an example of API definition in the [sample.json](/sample/sample.json) and [sample.yml](/sample/sample.yml). Next, just run the calamum command.
 
