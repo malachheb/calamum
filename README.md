@@ -20,6 +20,8 @@ Usage: /bin/calamum (options)
 ```
 
 To generate a documentation you should write a definition of your REST API in JSON format or YAML format.
+<br>
+In the case of separated resources files, the `resources` attribute must define the directory path of resources files as in the file [sample_separate_resources.json](/sample/sample_separate_resources.json).
 <br/>
 You could find an example of API definition in the [sample.json](/sample/sample.json) and [sample.yml](/sample/sample.yml). Next, just run the calamum command.
 
@@ -33,6 +35,7 @@ for bootstrap template:
 To preview just generated documentation, navigate to the 'docs' directory (by default in your home path, you can specify the destination path with the option '-p/--path').
 Then, find and open the index.html file in your browser and enjoy the result.
 
-## Contributors
-- [Alex](https://github.com/knoxknox)
-- [Luke Ross](https://github.com/lukeross)
+## Inspirations
+- [Apiary](http://apiary.io/blueprint)
+- [IO Docs](https://github.com/mashery/iodocs)
+- [Swagger](https://developers.helloreverb.com/swagger)
