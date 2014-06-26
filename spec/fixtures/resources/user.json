@@ -1,0 +1,30 @@
+{
+"user": [
+    {
+        "action": "GET",
+        "uri": "/users",
+        "description": "Retrieve all the registered users.",
+	"headers": {
+	    "content_type": "application/json"
+	},
+        "authentication": "false",
+	"params": {
+            "page": {
+                "type": "integer",
+                "description": "Page to show",
+                "required": true
+            }
+        },
+        "response": {
+            "data": [
+                {
+                    "id": 207119551,
+                    "first_name": "John",
+                    "last_name": "Doe"
+                }
+            ],
+            "total": 1050
+        }
+    }
+]
+}

@@ -1,0 +1,14 @@
+user:   
+ -
+  uri: '/users'
+  action: 'get'
+  authentication: 'false'
+  params:
+    page:
+      type: 'integer'
+      description: "Page to show"
+      required: true
+  headers:
+    content_type: 'application/json'
+  description: 'Retrieve all the registered users.'
+  response: {"data": [{"id": 207119551,"first_name": "John", "last_name": "Doe"}], "total": 1050 }

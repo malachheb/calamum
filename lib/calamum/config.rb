@@ -1,4 +1,4 @@
-require 'calamum'
+# require 'calamum'
 require 'mixlib/config'
 
 # Provides a class-based configuration object.

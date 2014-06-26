@@ -1,0 +1,30 @@
+{"article": [
+    {
+        "action": "GET",
+        "uri": "/blogs/:id/articles",
+        "description": "Receive a list of all articles for given blog.",
+        "headers": {
+	    "content_type": "application/json"
+	},
+	"authentication": "false",
+	"params": {
+            "id": {
+                "type": "integer",
+                "description": "article id",
+                "required": true
+            }
+        },
+        "response": {
+            "data": [
+                {
+                    "id": 989034056,
+                    "blog_id": 241253187,
+                    "author": "John",
+                    "published_at": null
+                }
+            ],
+            "total": 310
+        }
+    }
+]
+}

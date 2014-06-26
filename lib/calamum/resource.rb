@@ -12,7 +12,7 @@ class Calamum::Resource
     @uri = attrs['uri']
     @action = attrs['action'].upcase
     @headers = attrs['headers'] || {}
-    @auth = !!attrs['authentication']
+    @auth = !attrs['authentication']
     @params = attrs['params'] || {}
     @errors = attrs['errors'] || {}
     @description = attrs['description']

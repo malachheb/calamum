@@ -19,3 +19,4 @@ pkg
 *.iml
 *.ipr
 *.iws
+.rspec

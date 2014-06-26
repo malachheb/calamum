@@ -30,7 +30,11 @@ class Calamum::DocParser
   def get_seperate_resources
     extension = File.extname(Calamum::Config[:source])
     path = File.expand_path("#{@definition['resources']}", File.dirname(Calamum::Config[:source]))
-    Dir["#{path}/*#{extension}"].map { |f| Yajl.load File.read(f) }.flatten.reduce({}, :merge)
+    case extension
+    when '.json' then Dir["#{path}/*#{extension}"].map { |f| Yajl.load File.read(f) }.flatten.reduce({}, :merge)
+    when '.yml' then Dir["#{path}/*#{extension}"].map { |f| YAML.load File.read(f) }.flatten.reduce({}, :merge)
+    else raise 'unknown source file extension'
+    end
   end
 
   def load_resources
