@@ -18,6 +18,10 @@ class Calamum::DocParser
     @definition['version']
   end
 
+  def get_authentication
+    @definition['authentication']
+  end
+
   def get_description
     @definition['description']
   end

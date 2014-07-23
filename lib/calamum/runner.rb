@@ -66,7 +66,12 @@ class Calamum::Runner
     @definition.load_resources
     Calamum::DocGenerator.init_base_dir
     process_index
-    process_pages if config[:template] == 'twitter'
+
+    if config[:template] == 'twitter'
+      process_pages
+      process_section("overview",  @definition.get_description)
+      process_section("authentication", @definition.get_authentication)
+    end
   rescue => ex
     puts_error ex.message
   end
@@ -95,6 +100,18 @@ class Calamum::Runner
 
     page = Calamum::DocGenerator.new(:index)
     page.save_template('index.html', bindings)
+  end
+
+  # Bind values to overview and authentication pages and save them.
+  def process_section(section, content)
+    bindings = {
+      :section => section,
+      :name => @definition.get_name,
+      :version => @definition.get_version,
+      :description => content,
+    }
+    page = Calamum::DocGenerator.new(:section)
+    page.save_template("#{section}.html", bindings)
   end
 
   # Bind values to view pages and save them.
