@@ -16,4 +16,10 @@ resources:
       headers:
         content_type: 'application/json'
       description: 'Retrieve all the registered users.'
-      response: {"data": [{"id": 207119551,"first_name": "John", "last_name": "Doe"}], "total": 1050 }
+      response: 
+        data: 
+          -
+           id: 207119551
+           first_name: "John"
+           last_name: "Doe"
+        total: 1050 

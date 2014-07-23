@@ -11,4 +11,12 @@ article:
   headers:
     content_type: 'application/json'
   description: 'Receive a list of all articles for given blog.'
-  response: {"data": [{"id": 989034056,"blog_id": 241253187, "author": "John", "published_at": null }], "total": 310 }
+  response: 
+    data:
+      -
+       id: 989034056
+       blog_id: 241253187
+       author: "John"
+       published_at: null
+    total: 310
+       

@@ -69,9 +69,9 @@ class Calamum::Runner
 
     if config[:template] == 'twitter'
       process_pages
-      process_section("overview",  @definition.get_description) unless @definition.get_description.empty?
-      process_section("authentication", @definition.get_authentication) unless @definition.get_authentication.empty?
-      process_errors unless @definition.get_errors.empty?
+      process_section("overview",  @definition.get_description) unless @definition.get_description.nil?
+      process_section("authentication", @definition.get_authentication) unless @definition.get_authentication.nil?
+      process_errors unless @definition.get_errors.nil?
     end
   rescue => ex
     puts_error ex.message
