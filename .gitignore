@@ -21,3 +21,5 @@ pkg
 *.iws
 .rspec
 Gemfile.lock
+.ruby-version
+.ruby-gemset

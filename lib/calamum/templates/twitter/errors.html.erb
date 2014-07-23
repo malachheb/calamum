@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Developers API</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="no-sidebars">
+    <div id="page">
+      <div id="header-outer">
+        <div id="header">
+          <a href="/" id="logo" title="Home"><%= @name %></a>
+
+          <ul id="title-nav">
+            <li><a href="overview.html">Overview</a></li>
+            <li><a href="authentication.html">Authentication</a></li>
+            <li><a href="index.html">Resources</a></li>
+            <li><a href="errors.html">Errors</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="content-outer">
+        <h1>Error Codes</h1>
+        <div class="content api-docs">
+          <% unless @errors['http_errors'].empty? %>
+            <table>
+              <caption>
+                <strong> HTTP Status Codes</strong>
+	        <p>The API attempts to return appropriate
+	          <a rel="nofollow" href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes" class="ext" target="_blank">
+	             HTTP status codes
+	          </a>for every request.<p>
+              </caption>
+              <thead>
+                <tr>
+                  <th class="views-field-title">Code</th>
+		  <th class="views-field-title">Text</th>
+		  <th class="views-field-title">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @errors['http_errors'].each do |error| %>
+                  <tr>
+                    <td class="">
+                      <%= error['code'] %>
+                    </td>
+                    <td class="views-field">
+                      <%= error['text'] %>
+                    </td>
+		    <td class="views-field">
+                      <%= error['description'] %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+	  <% unless @errors['api_errors'].empty? %>
+            <table>
+              <caption>
+                <strong> API Status Codes</strong>
+	        <p> Description of the Api specific errors codes.
+              </caption>
+              <thead>
+                <tr>
+                  <th class="views-field-title">Code</th>
+		  <th class="views-field-title">Text</th>
+		  <th class="views-field-title">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @errors['api_errors'].each do |error| %>
+                  <tr>
+                    <td class="">
+                      <%= error['code'] %>
+                    </td>
+                    <td class="views-field">
+                      <%= error['text'] %>
+                    </td>
+		    <td class="views-field">
+                      <%= error['description'] %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="footer-outer">
+        <div id="footer"><%= @name %> &copy; 2013</div>
+      </div>
+
+    </div>
+  </body>
+</html>

@@ -26,6 +26,10 @@ class Calamum::DocParser
     @definition['description']
   end
 
+  def get_errors
+    @definition['errors']
+  end
+
   def get_resources
     resources = @definition['resources'].kind_of?(String) ? get_seperate_resources : @definition['resources']
     Calamum::Config[:sort]? resources.sort : resources

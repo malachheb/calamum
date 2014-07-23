@@ -69,8 +69,9 @@ class Calamum::Runner
 
     if config[:template] == 'twitter'
       process_pages
-      process_section("overview",  @definition.get_description)
-      process_section("authentication", @definition.get_authentication)
+      process_section("overview",  @definition.get_description) unless @definition.get_description.empty?
+      process_section("authentication", @definition.get_authentication) unless @definition.get_authentication.empty?
+      process_errors unless @definition.get_errors.empty?
     end
   rescue => ex
     puts_error ex.message
@@ -112,6 +113,16 @@ class Calamum::Runner
     }
     page = Calamum::DocGenerator.new(:section)
     page.save_template("#{section}.html", bindings)
+  end
+
+  def process_errors
+    bindings = {
+      :name => @definition.get_name,
+      :version => @definition.get_version,
+      :errors => @definition.get_errors,
+    }
+    page = Calamum::DocGenerator.new(:errors)
+    page.save_template("errors.html", bindings)
   end
 
   # Bind values to view pages and save them.
