@@ -1,4 +1,3 @@
-# require 'calamum'
 require 'mixlib/config'
 
 # Provides a class-based configuration object.
@@ -14,8 +13,11 @@ class Calamum::Config
     merge!(config)
 
     self.doc_path = File.join(config[:path], 'docs')
-    self.tpl_path = File.join(File.dirname(__FILE__), 'templates', config[:template])
-    raise "Unknown template #{config[:template]}" unless Calamum::VALID_TEMPLATES.include?(config[:template])
+    self.tpl_path = File.join(File.dirname(__FILE__),
+                              'templates',
+                              config[:template])
+    unless Calamum::VALID_TEMPLATES.include?(config[:template])
+      fail "Unknown template #{config[:template]}"
+    end
   end
-
 end

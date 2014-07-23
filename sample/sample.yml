@@ -6,28 +6,28 @@ authentication: 'You authenticate to the Stripe API by providing one of your API
 
 errors:
   http_errors:
-    -
+   -
     code: 200
     text: "OK"
     description: "Success"
-    -
+   -
     code: 304
     text: "Not Modified"
     description: "There was no new data to return."
-    -
+   -
     code: 400
     text: "Bad Request"
     description: "The request was invalid or cannot be otherwise served"
   api_errors:
-    -
+   -
     code: 32
     text: "Could not authenticate you"
     description: "Your call could not be completed as dialed"
-    -
+   -
     code: 34
     text: "Sorry, that page does not exist"
     description: "Corresponds with an HTTP 404 - the specified resource was not found."
-    -
+   -
     code: 64
     text: "Your account is suspended"
     description: "Corresponds with an HTTP 403"

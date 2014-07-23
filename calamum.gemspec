@@ -15,9 +15,16 @@ Gem::Specification.new do |gem|
   gem.executables   = 'calamum'
   gem.require_paths = ['lib']
 
+
   gem.add_dependency 'yajl-ruby'
   gem.add_dependency 'mixlib-cli'
   gem.add_dependency 'mixlib-config'
-  gem.add_development_dependency 'rspec'
+  
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec', '~> 3.0.0'
   gem.add_development_dependency 'rspec-its'
+  gem.add_development_dependency 'bundler'
+  gem.add_development_dependency 'rainbow',     '= 1.1.4'  
+  gem.add_development_dependency 'rubocop', '~> 0.15.0'
+
 end
