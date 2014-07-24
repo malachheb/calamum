@@ -70,7 +70,7 @@ class Calamum::Runner
     if config[:template] == 'twitter'
       process_pages
       process_section("overview",  @definition.get_description)
-      process_section("authentication", @definition.get_authentication
+      process_section("authentication", @definition.get_authentication)
       process_errors
     end
   rescue => ex
