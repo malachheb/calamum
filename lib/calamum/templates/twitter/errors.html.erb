@@ -22,7 +22,8 @@
 
       <div id="content-outer">
         <h1>Error Codes</h1>
-        <div class="content api-docs">
+	<% unless @errors.nil? %>
+         <div class="content api-docs">
           <% unless @errors['http_errors'].empty? %>
             <table>
               <caption>
@@ -87,6 +88,7 @@
             </table>
           <% end %>
         </div>
+	<% end %>
       </div>
 
       <div id="footer-outer">
