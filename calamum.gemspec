@@ -26,5 +26,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'bundler'
   gem.add_development_dependency 'rainbow',     '= 1.1.4'  
   gem.add_development_dependency 'rubocop', '~> 0.15.0'
+  gem.add_development_dependency 'coveralls'
 
 end
