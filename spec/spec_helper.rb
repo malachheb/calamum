@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'rspec/its'
 require_relative '../lib/calamum'
 
