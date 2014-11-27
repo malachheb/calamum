@@ -4,6 +4,10 @@
         "action": "GET",
         "uri": "/users",
         "description": "Retrieve all <br> the registered users.",
+	"headers": {
+	    "Accept": "application/vnd.example.v1",
+	    "Content-Type": "application/json"
+	},
         "params": {
             "page": {
                 "type": "integer",

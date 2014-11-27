@@ -1,5 +1,6 @@
 Next Release
-------------
+-----------------
+* Add headers section to twitter template
 
 1.2.0(26/06/2014)
 -----------------

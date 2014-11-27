@@ -32,6 +32,20 @@
             <p><%= @resource.description %></p>
           </div>
 
+	  <% unless @resource.headers.empty? %>
+	  <div class="field">
+            <h2>Headers</h2>
+            <div class="odd">
+              <% @resource.headers.each do |key, content| %>
+                <div class="parameter">
+                  <span class="param"><%= key %></span>
+                  <p><%= content %></p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+	  <% end %>
+
           <div class="field">
             <h2>Parameters</h2>
             <div class="odd">

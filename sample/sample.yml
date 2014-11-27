@@ -39,6 +39,7 @@ resources:
       authentication: 'false'
       headers:
         content_type: 'application/json'
+        Accept: "application/vnd.example.v1"
       description: 'Get the users list'
       response: {"users":[{"id":"12354","name":"test", "mail":"test@test.com"}, {"id":"123789","name":"test2", "mail":"test@test.com"}]}
      -
