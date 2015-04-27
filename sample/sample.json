@@ -116,6 +116,11 @@
                         "required": false
                     }
                 },
+                "request": {
+                    "email": "jdoe@gmail.com",
+                    "first_name": "John",
+                    "last_name": "Doe"
+                },
                 "response": {
                     "id": 207119551,
                     "first_name": "John",
@@ -152,6 +157,13 @@
                         "description": "Additional note for user",
                         "required": false
                     }
+                },
+                "request": {
+                    "id": 207119551,
+                    "email": "jdoe@gmail.com",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "note": "Note has been updated"
                 },
                 "response": {
                     "id": 207119551,

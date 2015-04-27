@@ -66,10 +66,6 @@ resources:
         content_type: 'application/json'
         content_language: 'en-US'
       params:
-        id: 
-          type: 'String'
-          description: 'User id'
-          required: true
         name:
           type: 'String'
           description: 'User name'
@@ -78,6 +74,8 @@ resources:
           type: 'String'
           description: 'User email'
           required: true
+      request: {"name": "test", "mail": "test@test.com"}
+      response: {"id": 12345, "name": "test", "mail": "test@test.com"}
      -
       uri: '/users/:id'
       action: 'put'
@@ -86,7 +84,7 @@ resources:
         content_type: 'application/json'
         content_language: 'en-US'
       params:
-        id: 
+        id:
           type: 'String'
           description: 'User id'
           required: true
@@ -98,6 +96,8 @@ resources:
           type: 'String'
           description: 'User email'
           required: true
+      request: {"id": 12345, "name": "test", "mail": "test@test.com"}
+      response: {"id": 12345, "name": "test", "mail": "test@test.com"}
      -
       uri: '/users/:id'
       action: 'delete'
