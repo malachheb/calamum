@@ -96,7 +96,8 @@ class Calamum::Runner
       :name => @definition.get_name,
       :resources => @definition.resources,
       :description => @definition.get_description,
-      :version => @definition.get_version
+      :version => @definition.get_version,
+      :copyright => @definition.get_copyright
     }
 
     page = Calamum::DocGenerator.new(:index)
@@ -110,6 +111,7 @@ class Calamum::Runner
       :name => @definition.get_name,
       :version => @definition.get_version,
       :description => content,
+      :copyright => @definition.get_copyright
     }
     page = Calamum::DocGenerator.new(:section)
     page.save_template("#{section}.html", bindings)

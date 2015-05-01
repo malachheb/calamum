@@ -1043,6 +1043,7 @@ pre.prettyprint  {
     padding: 0px;
      background-color: #fafafb;
      border: none !important;
+     overflow-y: auto;
 }
  pre .str  {
     color: #36C;

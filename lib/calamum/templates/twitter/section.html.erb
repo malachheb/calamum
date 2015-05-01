@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Developers API</title>
+    <title><%= @name %></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
   </head>
@@ -29,7 +29,7 @@
       </div>
 
       <div id="footer-outer">
-        <div id="footer"><%= @name %> &copy; 2013</div>
+        <div id="footer"><%= @name %> &copy; <%= @copyright || '2015' %></div>
       </div>
     </div>
   </body>

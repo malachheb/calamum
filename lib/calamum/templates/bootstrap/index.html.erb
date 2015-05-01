@@ -65,12 +65,13 @@
       </div>
       <div id="<%= req.slug %>" class="accordion-body collapse">
       <div class="accordion-inner">
-	<ul class="nav nav-tabs">
-	  <li class="active"><a href="#description_<%= req.slug %>"  data-toggle="tab">Description</a></li>
-	  <li><a href="#header_<%= req.slug %>" data-toggle="tab">Header</a></li>
-	  <li><a href="#params_<%= req.slug %>" data-toggle="tab">Parameters</a></li>
-	  <li><a href="#response_<%= req.slug %>" data-toggle="tab">Response</a></li>
-	</ul>
+      	<ul class="nav nav-tabs">
+      	  <li class="active"><a href="#description_<%= req.slug %>"  data-toggle="tab">Description</a></li>
+      	  <li><a href="#header_<%= req.slug %>" data-toggle="tab">Header</a></li>
+      	  <li><a href="#params_<%= req.slug %>" data-toggle="tab">Parameters</a></li>
+          <li><a href="#request_<%= req.slug %>" data-toggle="tab">Request</a></li>
+      	  <li><a href="#response_<%= req.slug %>" data-toggle="tab">Response</a></li>
+      	</ul>
         <div class="tab-content">
 	 <div class="tab-pane active" id="description_<%= req.slug %>"><%= req.description %></div>
 	 <div class="tab-pane" id="header_<%= req.slug %>">
@@ -121,11 +122,16 @@
 	      Request without parameters
 	   <% end %>
 	 </div>
-	   <div class="tab-pane content" id="response_<%= req.slug %>">
-		<% if req.response %>
-	  	 <pre class="prettyprint"><%= pj req.response %></pre>
-		 <% end%>
-	   </div>
+    <div class="tab-pane content" id="request_<%= req.slug %>">
+    <% if req.request %>
+    	 <pre class="prettyprint"><%= pj req.request %></pre>
+    <% end%>
+   </div>
+    <div class="tab-pane content" id="response_<%= req.slug %>">
+    <% if req.response %>
+       <pre class="prettyprint"><%= pj req.response %></pre>
+    <% end%>
+      </div>
         </div>
        </div>
      </div>
