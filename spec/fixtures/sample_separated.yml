@@ -1,5 +1,6 @@
 name: 'Sample REST API'
 url: 'http://api.sample.com'
 version: '1.0'
+copyright: '2015'
 description: 'sample description'
 resources: "./resources"
