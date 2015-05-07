@@ -13,11 +13,10 @@ class Calamum::Config
     merge!(config)
 
     self.doc_path = File.join(config[:path], 'docs')
-    self.tpl_path = File.join(File.dirname(__FILE__),
-                              'templates',
-                              config[:template])
-    unless Calamum::VALID_TEMPLATES.include?(config[:template])
-      fail "Unknown template #{config[:template]}"
+    self.tpl_path = File.join(config[:tplpath], config[:template])
+
+    unless File.exist?(self.tpl_path)
+      fail "Cannot find template #{config[:template]}"
     end
   end
 end

@@ -14,6 +14,7 @@ Usage: /bin/calamum (options)
   -f, --file DEFINITION            Path to the file with API definition
   -p, --path PATH                  Path to the directory where docs will be generated
   -t, --template TEMPLATE          Name of HTML template (twitter or bootstrap , twitter by default)
+  -l, --tplpath TEMPLATE_PATH      Path to look for templates.
   -s, --sort                       Sort the resources alphabetically
   -v, --version                    Show version number
   -h, --help                       Show this help
@@ -32,8 +33,16 @@ for bootstrap template:
 	
 	$calamum -f my_api_definition.json -t bootstrap
 
+for your owm template (in some/other/dir/mytemplate):
+
+	$calamum -f my_api_definition.json -l some/other/dir -t mytemplate
+
 To preview just generated documentation, navigate to the 'docs' directory (by default in your home path, you can specify the destination path with the option '-p/--path').
 Then, find and open the index.html file in your browser and enjoy the result.
+
+## Custom template
+
+Currently, custom templates are based on the `twitter` template format.  The simplest way to create your own template is to copy that one and modify it.
 
 ## Inspirations
 - [Apiary](http://apiary.io/blueprint)

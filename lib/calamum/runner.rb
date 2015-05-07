@@ -26,8 +26,14 @@ class Calamum::Runner
   option :template,
     :short        => '-t TEMPLATE',
     :long         => '--template TEMPLATE',
-    :description  => 'Name of HTML template [twitter, bootstrap](twitter by default)',
+    :description  => 'Name of HTML template [twitter, bootstrap, custom](twitter by default)',
     :default      => 'twitter'
+
+  option :tplpath,
+    :short        => '-l TEMPLATE_PATH',
+    :long         => '--tplpath TEMPLATE_PATH',
+    :description  => 'Path to look for templates.',
+    :default      => File.join(File.dirname(__FILE__), 'templates')
 
   option :path,
     :short        => '-p PATH',
@@ -51,9 +57,9 @@ class Calamum::Runner
     :exit         => 0
 
   option :sort,
-    :short        => "-s",
-    :long         => "--sort",
-    :description  => "Sort the resources alphabetically",
+    :short        => '-s',
+    :long         => '--sort',
+    :description  => 'Sort the resources alphabetically',
     :boolean      => true,
     :default      => false
 
@@ -67,7 +73,7 @@ class Calamum::Runner
     Calamum::DocGenerator.init_base_dir
     process_index
 
-    if config[:template] == 'twitter'
+    unless config[:template] == 'bootstrap'
       process_pages
       process_section("overview",  @definition.get_description)
       process_section("authentication", @definition.get_authentication)
