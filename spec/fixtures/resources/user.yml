@@ -18,3 +18,7 @@ user:
        first_name: "John"
        last_name: "Doe"
     total: 1050
+  request:
+    email: "jdoe@gmail.com"
+    first_name: "John"
+    last_name: "Doe"

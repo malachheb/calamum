@@ -2,6 +2,7 @@
     "name": "Sample REST API",
     "url": "http://api.sample.com",
     "version": "1.0",
+    "copyright": "2015",
     "description": "Calamum is a simple ruby build program to generate a REST API documentation from a YAML file definition",
     "authentication": "You authenticate to the Stripe API by providing one of your API keys in the request.<br> You can manage your API keys from your account. You can have multiple API keys active at one time. Your API keys carry many privileges, so be sure to keep them secret!",
     "errors": {

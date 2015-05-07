@@ -5,6 +5,7 @@ def test_definition_content
   it { @definition.get_name.should eql "Sample REST API" }
   it { @definition.get_description.should eql "sample description" }
   it { @definition.get_version.should eql "1.0" }
+  it { @definition.get_copyright.should eql "2015" }
 end
 
 def test_user_resource_content
@@ -19,6 +20,9 @@ def test_user_resource_content
   its(:description) { should == "Retrieve all the registered users." }
   its(:response) { should ==
     { "data"=> [{ "id"=> 207119551, "first_name"=> "John", "last_name"=> "Doe" }], "total"=> 1050 }
+  }
+  its(:request){ should ==
+    { "email" => "jdoe@gmail.com", "first_name" => "John", "last_name"=> "Doe"}
   }
 end
 
